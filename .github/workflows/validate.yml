@@ -46,6 +46,7 @@ jobs:
 
       - name: ▶️ Run tests
         uses: GabrielBB/xvfb-action@v1.0
-        with: |
-          yarn pretest
-          yarn test
+        with:
+          run: |
+            yarn pretest
+            yarn test
