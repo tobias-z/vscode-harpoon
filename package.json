@@ -12,7 +12,7 @@
   "activationEvents": [
     "onCommand:vscode-harpoon.helloWorld"
   ],
-  "main": "./dist/extension.js",
+  "main": "./dist/harpoon.js",
   "contributes": {
     "commands": [
       {
