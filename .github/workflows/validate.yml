@@ -11,10 +11,7 @@ jobs:
   validate:
     # ignore all-contributors PRs
     if: ${{ !contains(github.head_ref, 'all-contributors') }}
-    strategy:
-      matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     steps:
       - name: 🛑 Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.9.0
@@ -40,13 +37,9 @@ jobs:
             ${{ runner.os }}-yarn-${{ matrix.node-version }}-${{
             hashFiles('**/yarn.lock')}}
 
-      # `--prefer-offline` gives cache priority
       - name: Install dependencies
         run: yarn install --prefer-offline --frozen-lockfile
 
       - name: ▶️ Run tests
-        uses: GabrielBB/xvfb-action@v1.0
-        with:
-          run: |
-            yarn pretest
-            yarn test
+        run: |
+          yarn lint
