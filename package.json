@@ -22,14 +22,13 @@
     ]
   },
   "scripts": {
-    "prepare": "husky install",
     "vscode:prepublish": "yarn run package",
     "compile": "webpack",
     "watch": "webpack --watch",
     "package": "webpack --mode production --devtool hidden-source-map",
     "compile-tests": "tsc -p . --outDir out",
     "watch-tests": "tsc -p . -w --outDir out",
-    "pretest": "yarn run compile-tests && yarn run compile && yarn run lint",
+    "pretest": "yarn compile-tests && yarn compile && yarn lint",
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js"
   },
@@ -44,10 +43,19 @@
     "eslint": "^8.9.0",
     "glob": "^7.2.0",
     "husky": "^7.0.4",
+    "lint-staged": ">=10",
     "mocha": "^9.2.1",
+    "prettier": "^2.5.1",
     "ts-loader": "^9.2.6",
     "typescript": "^4.5.5",
     "webpack": "^5.69.1",
     "webpack-cli": "^4.9.2"
+  },
+  "lint-staged": {
+    "**/*.+(js|json|ts)": [
+      "prettier --write",
+      "yarn pretest",
+      "yarn test"
+    ]
   }
 }

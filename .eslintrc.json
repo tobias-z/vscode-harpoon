@@ -13,8 +13,7 @@
     "eqeqeq": "warn",
     "no-throw-literal": "warn",
     "semi": "warn",
-    "camelcase": "error",
-    "sort-imports": "error"
+    "camelcase": "error"
   },
   "ignorePatterns": ["out", "dist", "**/*.d.ts"]
 }
