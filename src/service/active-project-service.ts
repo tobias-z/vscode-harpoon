@@ -1,4 +1,4 @@
-import { getInstance } from "../singleton";
+import { getInstance } from "../util/singleton";
 
 type Editor = {
   fileName: string;
