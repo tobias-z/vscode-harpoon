@@ -1,11 +1,9 @@
-import { getInstance } from "../util/singleton";
-
 type Editor = {
   fileName: string;
   lastLine: number;
 };
 
-class ActiveProjectService {
+export default class ActiveProjectService {
   private readonly activeEditors: Editor[] = [];
 
   public addEditor(editor: Editor) {
@@ -16,5 +14,3 @@ class ActiveProjectService {
     return this.activeEditors[id + 1];
   }
 }
-
-export default getInstance(ActiveProjectService);
