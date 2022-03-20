@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import ActiveProjectService from "../service/active-project-service";
 
-export default function createAddWorkspaceCommand(activeProjectService: ActiveProjectService) {
+export default function createAddEditorCommand(activeProjectService: ActiveProjectService) {
   return () => {
     const editor = vscode.window.activeTextEditor;
     if (!editor || editor.document.fileName.startsWith("Untitled")) {

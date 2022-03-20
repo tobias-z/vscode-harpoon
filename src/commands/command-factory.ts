@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 
-type CommandName = "addWorkspace";
+type CommandName = "addEditor";
 
 export default class CommandFactory {
   constructor(private readonly context: vscode.ExtensionContext) {}
