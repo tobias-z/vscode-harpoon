@@ -3,7 +3,6 @@
   "proseWrap": "always",
   "bracketSpacing": true,
   "arrowParens": "avoid",
-  "jsxBracketSameLine": true,
   "semi": true,
   "useTabs": false,
   "printWidth": 90
