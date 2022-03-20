@@ -1,21 +1,13 @@
 import * as vscode from "vscode";
-import ActiveProjectService from "./service/active-project-service";
-import WorkspaceService from "./service/workspace-service";
+import CommandFactory from "./commands/command-factory";
 import { getInstance } from "./util/singleton";
+import ActiveProjectService from "./service/active-project-service";
+import createAddWorkspaceCommand from "./commands/addWorkspace";
 
 export function activate(context: vscode.ExtensionContext) {
+  const commandFactory = new CommandFactory(context);
   const activeProjectService = getInstance(ActiveProjectService);
-  activeProjectService.addEditor({
-    lastLine: 10,
-    fileName: "/Users/tobiaszimmermann/Documents/Projects/reuse/hooks/src/App.js",
-  });
-  const disposable = vscode.commands.registerCommand("vscode-harpoon.helloWorld", () => {
-    vscode.window.showInformationMessage("Hello World from vscode-harpoon!");
-    const workspaceService = getInstance(WorkspaceService);
-    workspaceService.changeWorkspace(1);
-  });
-
-  context.subscriptions.push(disposable);
+  commandFactory.registerCommand("addWorkspace", createAddWorkspaceCommand(activeProjectService));
 }
 
 export function deactivate() {}

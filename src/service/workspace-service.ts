@@ -3,14 +3,12 @@ import { getInstance } from "../util/singleton";
 import ActiveProjectService from "./active-project-service";
 
 export default class WorkspaceService {
-  private readonly activeProjectService = getInstance(ActiveProjectService);
+  constructor(private readonly activeProjectService: ActiveProjectService) {}
 
   public changeWorkspace(id: number) {
-    const { fileName, lastLine } = this.activeProjectService.getEditor(id);
+    const { fileName } = this.activeProjectService.getEditor(id);
     vscode.workspace.openTextDocument(fileName).then(doc => {
       vscode.window.showTextDocument(doc);
     });
   }
 }
-
-// vscode.window.activeTextEditor?.selection.active.line

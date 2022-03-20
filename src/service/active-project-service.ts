@@ -13,8 +13,4 @@ export default class ActiveProjectService {
   public getEditor(id: number) {
     return this.activeEditors[id - 1];
   }
-
-  editEditor(id: number, newEditor: Editor) {
-    this.activeEditors[id - 1] = newEditor;
-  }
 }

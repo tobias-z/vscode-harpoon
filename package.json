@@ -10,14 +10,14 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:vscode-harpoon.helloWorld"
+    "onCommand:vscode-harpoon.addWorkspace"
   ],
   "main": "./dist/harpoon.js",
   "contributes": {
     "commands": [
       {
-        "command": "vscode-harpoon.helloWorld",
-        "title": "Hello World"
+        "command": "vscode-harpoon.addWorkspace",
+        "title": "Add Workspace"
       }
     ]
   },

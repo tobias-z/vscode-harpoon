@@ -3,7 +3,7 @@ function createSingletonHandler() {
 
   return {
     getInstance<T>(
-      singleton: { new (): T; new (...args: any): T },
+      singleton: { new (): T } | { new (...args: any[]): T },
       ...constructorArgs: any[]
     ): T {
       if (singletonMap.has(singleton)) {
