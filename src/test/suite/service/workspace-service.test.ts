@@ -1,11 +1,9 @@
-import * as vscode from "vscode";
 import { beforeEach } from "mocha";
 import ActiveProjectService from "../../../service/active-project-service";
 import WorkspaceService from "../../../service/workspace-service";
 import * as assert from "assert";
 
 suite("workspace service", () => {
-  vscode.window.showInformationMessage("Can access window");
   let workspaceService: WorkspaceService;
   let activeProjectService: ActiveProjectService;
   beforeEach(() => {
