@@ -1,22 +1,13 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
+import CommandFactory from "./commands/command-factory";
+import { getInstance } from "./util/singleton";
+import ActiveProjectService from "./service/active-project-service";
+import createAddWorkspaceCommand from "./commands/addWorkspace";
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-  console.log('Congratulations, your extension "vscode-harpoon" is now active!');
-
-  // The command has been defined in the package.json file
-  // Now provide the implementation of the command with registerCommand
-  // The commandId parameter must match the command field in package.json
-  let disposable = vscode.commands.registerCommand("vscode-harpoon.helloWorld", () => {
-    // The code you place here will be executed every time your command is executed
-    // Display a message box to the user
-    vscode.window.showInformationMessage("Hello World from vscode-harpoon!");
-  });
-
-  context.subscriptions.push(disposable);
+  const commandFactory = new CommandFactory(context);
+  const activeProjectService = getInstance(ActiveProjectService);
+  commandFactory.registerCommand("addWorkspace", createAddWorkspaceCommand(activeProjectService));
 }
 
 export function deactivate() {}
