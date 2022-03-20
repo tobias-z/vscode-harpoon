@@ -10,14 +10,59 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:vscode-harpoon.addEditor"
+    "onCommand:vscode-harpoon.addEditor",
+    "onCommand:vscode-harpoon.gotoEditor1",
+    "onCommand:vscode-harpoon.gotoEditor2",
+    "onCommand:vscode-harpoon.gotoEditor3",
+    "onCommand:vscode-harpoon.gotoEditor4",
+    "onCommand:vscode-harpoon.gotoEditor5",
+    "onCommand:vscode-harpoon.gotoEditor6",
+    "onCommand:vscode-harpoon.gotoEditor7",
+    "onCommand:vscode-harpoon.gotoEditor8",
+    "onCommand:vscode-harpoon.gotoEditor9"
   ],
   "main": "./dist/harpoon.js",
   "contributes": {
     "commands": [
       {
         "command": "vscode-harpoon.addEditor",
-        "title": "Add Editor"
+        "title": "VSCode Harpoon: Add Editor"
+      },
+      {
+        "command": "vscode-harpoon.gotoEditor1",
+        "title": "VSCode Harpoon: Go to editor 1"
+      },
+      {
+        "command": "vscode-harpoon.gotoEditor2",
+        "title": "VSCode Harpoon: Go to editor 2"
+      },
+      {
+        "command": "vscode-harpoon.gotoEditor3",
+        "title": "VSCode Harpoon: Go to editor 3"
+      },
+      {
+        "command": "vscode-harpoon.gotoEditor4",
+        "title": "VSCode Harpoon: Go to editor 4"
+      },
+      {
+        "command": "vscode-harpoon.gotoEditor5",
+        "title": "VSCode Harpoon: Go to editor 5"
+      },
+      {
+        "command": "vscode-harpoon.gotoEditor6",
+        "title": "VSCode Harpoon: Go to editor 6"
+      },
+      {
+        "command": "vscode-harpoon.gotoEditor7",
+        "title": "VSCode Harpoon: Go to editor 7"
+      },
+      {
+        "command": "vscode-harpoon.gotoEditor8",
+        "title": "VSCode Harpoon: Go to editor 8"
+      },
+      {
+        "command": "vscode-harpoon.gotoEditor9",
+        "title": "VSCode Harpoon: Go to editor 9"
       }
     ]
   },
