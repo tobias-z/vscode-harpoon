@@ -1,5 +1,4 @@
 import * as vscode from "vscode";
-import { getInstance } from "./util/singleton";
 import ActiveProjectService from "./service/active-project-service";
 import WorkspaceService from "./service/workspace-service";
 import CommandFactory from "./commands/command-factory";
@@ -10,11 +9,10 @@ export const WORKSPACE_STATE = "vscodeHarpoonWorkspace";
 
 export function activate(context: vscode.ExtensionContext) {
   const commandFactory = new CommandFactory(context);
-  const activeProjectService = getInstance(
-    ActiveProjectService,
+  const activeProjectService = new ActiveProjectService(
     context.workspaceState.get(WORKSPACE_STATE) || []
   );
-  const workspaceService = getInstance(WorkspaceService, activeProjectService, context);
+  const workspaceService = new WorkspaceService(activeProjectService, context);
   const gotoEditor = createGotoEditorCommand(workspaceService);
 
   commandFactory.registerCommand(
