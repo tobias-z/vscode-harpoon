@@ -6,7 +6,7 @@ suite("active project service", () => {
   let activeProjectService: ActiveProjectService;
 
   beforeEach(() => {
-    activeProjectService = new ActiveProjectService();
+    activeProjectService = new ActiveProjectService([]);
   });
 
   test("can add editor", () => {

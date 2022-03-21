@@ -1,4 +1,5 @@
 {
+  "publisher": "tobiasz",
   "name": "vscode-harpoon",
   "displayName": "vscode-harpoon",
   "description": "A vscode clone of the vim plugin Harpoon created by The Primeagen",

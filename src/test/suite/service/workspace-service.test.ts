@@ -1,4 +1,5 @@
-import { beforeEach } from "mocha";
+import * as vscode from "vscode";
+import { before, beforeEach } from "mocha";
 import ActiveProjectService from "../../../service/active-project-service";
 import WorkspaceService from "../../../service/workspace-service";
 import * as assert from "assert";
@@ -6,9 +7,13 @@ import * as assert from "assert";
 suite("workspace service", () => {
   let workspaceService: WorkspaceService;
   let activeProjectService: ActiveProjectService;
-  beforeEach(() => {
-    activeProjectService = new ActiveProjectService();
-    workspaceService = new WorkspaceService(activeProjectService);
+
+  beforeEach(async () => {
+    activeProjectService = new ActiveProjectService([]);
+    workspaceService = new WorkspaceService(
+      activeProjectService,
+      await vscode.extensions.getExtension("tobiasz.vscode-harpoon")!.activate()
+    );
   });
 
   test("can change editor", async () => {

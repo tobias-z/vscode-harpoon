@@ -4,7 +4,7 @@ type Editor = {
 };
 
 export default class ActiveProjectService {
-  private readonly activeEditors: Editor[] = [];
+  constructor(private readonly activeEditors: Editor[]) {}
 
   public addEditor(editor: Editor) {
     this.activeEditors.push(editor);
@@ -12,5 +12,9 @@ export default class ActiveProjectService {
 
   public getEditor(id: number) {
     return this.activeEditors[id - 1];
+  }
+
+  public getAllEditors() {
+    return this.activeEditors;
   }
 }

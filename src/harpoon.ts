@@ -1,17 +1,26 @@
 import * as vscode from "vscode";
-import CommandFactory from "./commands/command-factory";
 import { getInstance } from "./util/singleton";
 import ActiveProjectService from "./service/active-project-service";
-import createAddEditorCommand from "./commands/add-editor";
-import { createGotoEditorCommand } from "./commands/goto-editor";
 import WorkspaceService from "./service/workspace-service";
+import CommandFactory from "./commands/command-factory";
+import { createGotoEditorCommand } from "./commands/goto-editor";
+import createAddEditorCommand from "./commands/add-editor";
+
+export const WORKSPACE_STATE = "vscodeHarpoonWorkspace";
 
 export function activate(context: vscode.ExtensionContext) {
   const commandFactory = new CommandFactory(context);
-  const activeProjectService = getInstance(ActiveProjectService);
-  const gotoEditor = createGotoEditorCommand(getInstance(WorkspaceService, activeProjectService));
+  const activeProjectService = getInstance(
+    ActiveProjectService,
+    context.workspaceState.get(WORKSPACE_STATE) || []
+  );
+  const workspaceService = getInstance(WorkspaceService, activeProjectService, context);
+  const gotoEditor = createGotoEditorCommand(workspaceService);
 
-  commandFactory.registerCommand("addEditor", createAddEditorCommand(activeProjectService));
+  commandFactory.registerCommand(
+    "addEditor",
+    createAddEditorCommand(activeProjectService, workspaceService)
+  );
   commandFactory.registerCommand("gotoEditor1", gotoEditor(1));
   commandFactory.registerCommand("gotoEditor2", gotoEditor(2));
   commandFactory.registerCommand("gotoEditor3", gotoEditor(3));
@@ -21,6 +30,6 @@ export function activate(context: vscode.ExtensionContext) {
   commandFactory.registerCommand("gotoEditor7", gotoEditor(7));
   commandFactory.registerCommand("gotoEditor8", gotoEditor(8));
   commandFactory.registerCommand("gotoEditor9", gotoEditor(9));
-}
 
-export function deactivate() {}
+  return context;
+}
