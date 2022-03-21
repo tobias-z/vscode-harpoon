@@ -1,20 +1,23 @@
 type Editor = {
   fileName: string;
-  lastLine: number;
 };
 
 export default class ActiveProjectService {
-  constructor(private readonly activeEditors: Editor[]) {}
+  constructor(private _activeEditors: Editor[]) {}
 
   public addEditor(editor: Editor) {
-    this.activeEditors.push(editor);
+    this._activeEditors.push(editor);
   }
 
   public getEditor(id: number) {
-    return this.activeEditors[id - 1];
+    return this._activeEditors[id - 1];
   }
 
-  public getAllEditors() {
-    return this.activeEditors;
+  public set activeEditors(editors: Editor[]) {
+    this._activeEditors = editors;
+  }
+
+  public get activeEditors(): Editor[] {
+    return this._activeEditors;
   }
 }

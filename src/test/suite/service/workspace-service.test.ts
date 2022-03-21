@@ -19,7 +19,7 @@ suite("workspace service", () => {
   test("can change editor", async () => {
     // const expected = "/home/tobiasz/dev/js/vscode/vscode-harpoon/package.json";
     const expected = `${process.cwd()}/package.json`;
-    activeProjectService.addEditor({ fileName: expected, lastLine: 1 });
+    activeProjectService.addEditor({ fileName: expected });
     const doc = await workspaceService.changeEditor(1)!;
     assert.strictEqual(doc.document.fileName, expected);
   });
@@ -28,11 +28,11 @@ suite("workspace service", () => {
     const packageJson = `${process.cwd()}/package.json`;
     const gitIgnore = `${process.cwd()}/.gitignore`;
 
-    activeProjectService.addEditor({ fileName: packageJson, lastLine: 1 });
+    activeProjectService.addEditor({ fileName: packageJson });
     const firstDoc = await workspaceService.changeEditor(1)!;
     const firstWorkspace = firstDoc.document.fileName;
 
-    activeProjectService.addEditor({ fileName: gitIgnore, lastLine: 1 });
+    activeProjectService.addEditor({ fileName: gitIgnore });
     const secondDoc = await workspaceService.changeEditor(2)!;
     const secondWorkspace = secondDoc.document.fileName;
 

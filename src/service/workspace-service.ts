@@ -19,6 +19,6 @@ export default class WorkspaceService {
   }
 
   public saveWorkspace() {
-    this.context.workspaceState.update(WORKSPACE_STATE, this.activeProjectService.getAllEditors());
+    this.context.workspaceState.update(WORKSPACE_STATE, this.activeProjectService.activeEditors);
   }
 }

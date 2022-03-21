@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 
 type CommandName =
   | "addEditor"
+  | "editEditors"
   | "gotoEditor1"
   | "gotoEditor2"
   | "gotoEditor3"

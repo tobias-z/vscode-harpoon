@@ -11,7 +11,7 @@ suite("active project service", () => {
 
   test("can add editor", () => {
     const expected = "something";
-    activeProjectService.addEditor({ fileName: expected, lastLine: 1 });
+    activeProjectService.addEditor({ fileName: expected });
     const actual = activeProjectService.getEditor(1);
     assert.notStrictEqual(actual, null);
     assert.strictEqual(actual.fileName, expected);

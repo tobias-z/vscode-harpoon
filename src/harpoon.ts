@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import * as vscode from "vscode";
 import ActiveProjectService from "./service/active-project-service";
 import WorkspaceService from "./service/workspace-service";
 import CommandFactory from "./commands/command-factory";
 import { createGotoEditorCommand } from "./commands/goto-editor";
 import createAddEditorCommand from "./commands/add-editor";
+import createEditEditorsCommand from "./commands/edit-editors";
 
 export const WORKSPACE_STATE = "vscodeHarpoonWorkspace";
 
@@ -18,6 +20,10 @@ export function activate(context: vscode.ExtensionContext) {
   commandFactory.registerCommand(
     "addEditor",
     createAddEditorCommand(activeProjectService, workspaceService)
+  );
+  commandFactory.registerCommand(
+    "editEditors",
+    createEditEditorsCommand(activeProjectService, workspaceService)
   );
   commandFactory.registerCommand("gotoEditor1", gotoEditor(1));
   commandFactory.registerCommand("gotoEditor2", gotoEditor(2));

@@ -12,6 +12,7 @@
   ],
   "activationEvents": [
     "onCommand:vscode-harpoon.addEditor",
+    "onCommand:vscode-harpoon.editEditors",
     "onCommand:vscode-harpoon.gotoEditor1",
     "onCommand:vscode-harpoon.gotoEditor2",
     "onCommand:vscode-harpoon.gotoEditor3",
@@ -28,6 +29,10 @@
       {
         "command": "vscode-harpoon.addEditor",
         "title": "VSCode Harpoon: Add Editor"
+      },
+      {
+        "command": "vscode-harpoon.editEditors",
+        "title": "VSCode Harpoon: Edit Editors"
       },
       {
         "command": "vscode-harpoon.gotoEditor1",

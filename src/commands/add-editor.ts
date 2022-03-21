@@ -13,7 +13,6 @@ export default function createAddEditorCommand(
     }
 
     activeProjectService.addEditor({
-      lastLine: editor.selection.active.line,
       fileName: editor.document.fileName,
     });
     workspaceService.saveWorkspace();
