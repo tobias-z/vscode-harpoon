@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import ActiveProjectService from "./active-project-service";
-import { getStateKey } from "../harpoon";
+import { getStateKey, State } from "../harpoon";
 
 export default class WorkspaceService {
   private readonly stateKey: string;
@@ -8,7 +8,7 @@ export default class WorkspaceService {
   constructor(
     private readonly activeProjectService: ActiveProjectService,
     private readonly context: vscode.ExtensionContext,
-    private readonly state: "workspaceState" | "globalState"
+    private readonly state: State
   ) {
     this.stateKey = getStateKey(state);
   }

@@ -7,36 +7,47 @@ import { createGotoEditorCommand } from "./commands/goto-editor";
 import createAddEditorCommand from "./commands/add-editor";
 import createEditEditorsCommand from "./commands/edit-editors";
 
-export function getStateKey(state: "workspaceState" | "globalState") {
+export type State = "workspaceState" | "globalState";
+
+export function getStateKey(state: State) {
   return "vscodeHarpoon" + state;
 }
 
 export function activate(context: vscode.ExtensionContext) {
   const commandFactory = new CommandFactory(context);
-  const activeProjectService = new ActiveProjectService(
-    context.workspaceState.get(getStateKey("workspaceState")) || []
-  );
+  registerCommands(context, commandFactory, "workspaceState");
+  registerCommands(context, commandFactory, "globalState");
+  return context;
+}
 
-  const workspaceService = new WorkspaceService(activeProjectService, context, "workspaceState");
+function registerCommands(
+  context: vscode.ExtensionContext,
+  commandFactory: CommandFactory,
+  state: State
+) {
+  const activeProjectService = new ActiveProjectService(
+    context[state].get(getStateKey(state)) || []
+  );
+  const workspaceService = new WorkspaceService(activeProjectService, context, state);
   const gotoEditor = createGotoEditorCommand(workspaceService);
 
+  const key = state === "globalState" ? "Global" : "";
+
   commandFactory.registerCommand(
-    "addEditor",
+    `add${key}Editor`,
     createAddEditorCommand(activeProjectService, workspaceService)
   );
   commandFactory.registerCommand(
-    "editEditors",
+    `edit${key}Editors`,
     createEditEditorsCommand(activeProjectService, workspaceService)
   );
-  commandFactory.registerCommand("gotoEditor1", gotoEditor(1));
-  commandFactory.registerCommand("gotoEditor2", gotoEditor(2));
-  commandFactory.registerCommand("gotoEditor3", gotoEditor(3));
-  commandFactory.registerCommand("gotoEditor4", gotoEditor(4));
-  commandFactory.registerCommand("gotoEditor5", gotoEditor(5));
-  commandFactory.registerCommand("gotoEditor6", gotoEditor(6));
-  commandFactory.registerCommand("gotoEditor7", gotoEditor(7));
-  commandFactory.registerCommand("gotoEditor8", gotoEditor(8));
-  commandFactory.registerCommand("gotoEditor9", gotoEditor(9));
-
-  return context;
+  commandFactory.registerCommand(`goto${key}Editor1`, gotoEditor(1));
+  commandFactory.registerCommand(`goto${key}Editor2`, gotoEditor(2));
+  commandFactory.registerCommand(`goto${key}Editor3`, gotoEditor(3));
+  commandFactory.registerCommand(`goto${key}Editor4`, gotoEditor(4));
+  commandFactory.registerCommand(`goto${key}Editor5`, gotoEditor(5));
+  commandFactory.registerCommand(`goto${key}Editor6`, gotoEditor(6));
+  commandFactory.registerCommand(`goto${key}Editor7`, gotoEditor(7));
+  commandFactory.registerCommand(`goto${key}Editor8`, gotoEditor(8));
+  commandFactory.registerCommand(`goto${key}Editor9`, gotoEditor(9));
 }
