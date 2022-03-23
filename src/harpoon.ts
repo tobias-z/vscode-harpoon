@@ -7,14 +7,17 @@ import { createGotoEditorCommand } from "./commands/goto-editor";
 import createAddEditorCommand from "./commands/add-editor";
 import createEditEditorsCommand from "./commands/edit-editors";
 
-export const WORKSPACE_STATE = "vscodeHarpoonWorkspace";
+export function getStateKey(state: "workspaceState" | "globalState") {
+  return "vscodeHarpoon" + state;
+}
 
 export function activate(context: vscode.ExtensionContext) {
   const commandFactory = new CommandFactory(context);
   const activeProjectService = new ActiveProjectService(
-    context.workspaceState.get(WORKSPACE_STATE) || []
+    context.workspaceState.get(getStateKey("workspaceState")) || []
   );
-  const workspaceService = new WorkspaceService(activeProjectService, context);
+
+  const workspaceService = new WorkspaceService(activeProjectService, context, "workspaceState");
   const gotoEditor = createGotoEditorCommand(workspaceService);
 
   commandFactory.registerCommand(

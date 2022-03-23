@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
-import { before, beforeEach } from "mocha";
+import { beforeEach } from "mocha";
 import ActiveProjectService from "../../../service/active-project-service";
 import WorkspaceService from "../../../service/workspace-service";
 import * as assert from "assert";
@@ -12,12 +12,12 @@ suite("workspace service", () => {
     activeProjectService = new ActiveProjectService([]);
     workspaceService = new WorkspaceService(
       activeProjectService,
-      await vscode.extensions.getExtension("tobiasz.vscode-harpoon")!.activate()
+      await vscode.extensions.getExtension("tobiasz.vscode-harpoon")!.activate(),
+      "workspaceState"
     );
   });
 
   test("can change editor", async () => {
-    // const expected = "/home/tobiasz/dev/js/vscode/vscode-harpoon/package.json";
     const expected = `${process.cwd()}/package.json`;
     activeProjectService.addEditor({ fileName: expected });
     const doc = await workspaceService.changeEditor(1)!;

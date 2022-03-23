@@ -1,12 +1,17 @@
 import * as vscode from "vscode";
 import ActiveProjectService from "./active-project-service";
-import { WORKSPACE_STATE } from "../harpoon";
+import { getStateKey } from "../harpoon";
 
 export default class WorkspaceService {
+  private readonly stateKey: string;
+
   constructor(
     private readonly activeProjectService: ActiveProjectService,
-    private readonly context: vscode.ExtensionContext
-  ) {}
+    private readonly context: vscode.ExtensionContext,
+    private readonly state: "workspaceState" | "globalState"
+  ) {
+    this.stateKey = getStateKey(state);
+  }
 
   public changeEditor(id: number) {
     const editor = this.activeProjectService.getEditor(id);
@@ -19,6 +24,6 @@ export default class WorkspaceService {
   }
 
   public saveWorkspace() {
-    this.context.workspaceState.update(WORKSPACE_STATE, this.activeProjectService.activeEditors);
+    this.context[this.state].update(this.stateKey, this.activeProjectService.activeEditors);
   }
 }
