@@ -137,7 +137,7 @@
     "pretest": "yarn compile-tests && yarn compile && yarn lint",
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js",
-    "version": "node scripts/version.cjs",
+    "version": "node scripts/version.cjs $1",
     "major-version": "node scripts/version.cjs --major"
   },
   "devDependencies": {
