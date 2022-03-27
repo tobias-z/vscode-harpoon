@@ -13,14 +13,13 @@ export default class WorkspaceService {
     this.stateKey = getStateKey(state);
   }
 
-  public changeEditor(id: number) {
+  public async changeEditor(id: number) {
     const editor = this.activeProjectService.getEditor(id);
     if (!editor) {
       return;
     }
-    return vscode.workspace.openTextDocument(editor.fileName).then(doc => {
-      return vscode.window.showTextDocument(doc);
-    });
+    const doc = await vscode.workspace.openTextDocument(editor.fileName);
+    return await vscode.window.showTextDocument(doc);
   }
 
   public saveWorkspace() {

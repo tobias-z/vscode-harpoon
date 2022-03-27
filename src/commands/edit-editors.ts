@@ -4,9 +4,9 @@ import WorkspaceService from "../service/workspace-service";
 
 const HARPOON_FILE = "/vscodeHarpoon.harpoon";
 
-function prepareEditFile() {
+function prepareEditFile(workspace: readonly vscode.WorkspaceFolder[]) {
   const wsedit = new vscode.WorkspaceEdit();
-  const wsPath = vscode.workspace.workspaceFolders![0].uri.fsPath; // gets the path of the first workspace folder
+  const wsPath = workspace[0].uri.fsPath; // gets the path of the first workspace folder
   const filePath = vscode.Uri.file(wsPath + HARPOON_FILE);
   wsedit.createFile(filePath, { overwrite: true });
   return vscode.workspace.applyEdit(wsedit).then(() => filePath);
@@ -59,7 +59,11 @@ export default function createEditEditorsCommand(
   }
 
   return () => {
-    prepareEditFile().then(filePath => {
+    const workspace = vscode.workspace.workspaceFolders;
+    if (!workspace) {
+      return;
+    }
+    prepareEditFile(workspace).then(filePath => {
       const disposable = onEditListener();
       onEditorCloseListener(filePath, disposable.dispose);
       vscode.workspace.openTextDocument(filePath).then(doc => {

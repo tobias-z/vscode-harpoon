@@ -27,8 +27,15 @@ type CommandName =
 export default class CommandFactory {
   constructor(private readonly context: vscode.ExtensionContext) {}
 
-  public registerCommand(commandName: CommandName, command: () => void) {
-    const disposable = vscode.commands.registerCommand(`vscode-harpoon.${commandName}`, command);
+  public registerCommand(commandName: CommandName, command: () => any | Promise<any>) {
+    const disposable = vscode.commands.registerCommand(
+      `vscode-harpoon.${commandName}`,
+      async () => {
+        try {
+          return await Promise.resolve(command());
+        } catch {}
+      }
+    );
     this.context.subscriptions.push(disposable);
   }
 }
