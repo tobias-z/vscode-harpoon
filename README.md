@@ -99,10 +99,3 @@ Please file an issue for bugs, missing documentation, unexpected behavior etc.
 Please file an issue to suggest new features. Vote on feature requests by adding a 👍.
 
 [**Create Feature Requests**](https://github.com/tobias-z/vscode-harpoon/issues/new?assignees=&labels=&template=feature_request.md&title=)
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating
-your extension.
-
-- [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
