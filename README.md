@@ -19,7 +19,7 @@ When adding your first editor, it will be set as `editor 1`, the next `editor 2`
 
 You are then able to jump to `editor 1` or `editor 2` from anywhere in your workspace.
 
-![Navigation Example](images/navigation.png)
+![Navigation Example](images/navigation.gif)
 
 ### Available Commands
 
