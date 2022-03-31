@@ -37,10 +37,9 @@ You are then able to jump to `editor 1` or `editor 2` from anywhere in your work
 
 ## Example Keybinds
 
-### VSCode
+### VSCode (`keybindings.json`)
 
 ```json
-// keybindings.json
 [
   {
     "key": "alt+a",
@@ -57,10 +56,9 @@ You are then able to jump to `editor 1` or `editor 2` from anywhere in your work
 ]
 ```
 
-### VSCode Vim
+### VSCode Vim (`settings.json`)
 
 ```json
-// settings.json
 {
   "vim.leader": " ",
   "vim.normalModeKeyBindings": [
