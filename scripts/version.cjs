@@ -5,7 +5,6 @@ const { getArgs, handleProcess } = require("./utils.cjs");
 
 async function version() {
   const args = getArgs();
-  console.log(args);
   if (!args.includes("--major")) {
     executeCommand("npm version patch");
     return;

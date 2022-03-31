@@ -1,70 +1,57 @@
-# vscode-harpoon README
+<div align="center">
 
-This is the README for your extension "vscode-harpoon". After writing up a brief description, we recommend including the following sections.
+# VS Code Harpoon
+
+VS Code Harpoon is inspired by The Primeagen's [Harpoon](https://github.com/ThePrimeagen/harpoon)
+plugin for neovim. It supports the basic use case of file navigation just like with Harpoon.
+
+![GitHub](https://img.shields.io/github/license/tobias-z/vscode-harpoon)
+
+</div>
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+VSCode Harpoon is a file navigation tool, which lets you mark editors and jump to your marked
+editors.
 
-For example if there is an image subfolder under your extension project workspace:
+When adding your first editor, it will be set as `editor 1`, the next `editor 2` and so on.
 
-\!\[feature X\]\(images/feature-x.png\)
+You are then able to jump to `editor 1` or `editor 2` from anywhere in your workspace.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+![Navigation Example](images/navigation.png)
 
-## Requirements
+## Usage
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+## Example Keybinds
 
-## Extension Settings
+### VSCode Vim
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+### VSCode
 
-For example:
+---
 
-This extension contributes the following settings:
+## Issues
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+Looking to contribute? Please read the `CONTRIBUTING.md` file, which contains information about
+making a PR.
 
-## Known Issues
+Any feedback is very appreciated!
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+### 🪲 Bugs
 
-## Release Notes
+Please file an issue for bugs, missing documentation, unexpected behavior etc.
 
-Users appreciate release notes as you update your extension.
+[**Create bug report**](https://github.com/tobias-z/vscode-harpoon/issues/new?assignees=&labels=&template=bug_report.md&title=)
 
-### 1.0.0
+### 🕯 Feature Requests
 
-Initial release of ...
+Please file an issue to suggest new features. Vote on feature requests by adding a 👍.
 
-### 1.0.1
+[**Create Feature Requests**](https://github.com/tobias-z/vscode-harpoon/issues/new?assignees=&labels=&template=feature_request.md&title=)
 
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
 ## Following extension guidelines
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+Ensure that you've read through the extensions guidelines and follow the best practices for creating
+your extension.
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+- [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
