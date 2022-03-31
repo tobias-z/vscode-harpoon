@@ -74,7 +74,6 @@ You are then able to jump to `editor 1` or `editor 2` from anywhere in your work
       "before": ["<leader>", "1"],
       "commands": ["vscode-harpoon.gotoEditor1"]
     }
-    // ...
   ]
 }
 ```
