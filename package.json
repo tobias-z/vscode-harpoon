@@ -145,6 +145,7 @@
     "pretest": "yarn compile-tests && yarn compile && yarn lint",
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js",
+    "setup": "yarn && yarn pretest && yarn test",
     "update-version": "node scripts/version.cjs"
   },
   "devDependencies": {

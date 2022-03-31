@@ -5,7 +5,8 @@
 VS Code Harpoon is inspired by The Primeagen's [Harpoon](https://github.com/ThePrimeagen/harpoon)
 plugin for neovim. It supports the basic use case of file navigation just like with Harpoon.
 
-![GitHub](https://img.shields.io/github/license/tobias-z/vscode-harpoon)
+![GitHub](https://img.shields.io/github/workflow/status/tobias-z/vscode-harpoon/validate/main)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 </div>
 
@@ -20,13 +21,65 @@ You are then able to jump to `editor 1` or `editor 2` from anywhere in your work
 
 ![Navigation Example](images/navigation.png)
 
-## Usage
+### Available Commands
+
+- `VSCode Harpoon: Add Editor (vscode-harpoon.addEditor)` adds the current editor to your workspace
+- `VSCode Harpoon: Go to editor [1-9] (vscode-harpoon.gotoEditor[1-9])` Goes to workspace editor
+  [1-9]
+- `VSCode Harpoon: Edit Editors (vscode-harpoon.editEditors)` Opens an editor for you do delete or
+  move added editors around.
+- `VSCode Harpoon: Add Global Editor (vscode-harpoon.addGlobalEditor)` adds the current editor
+  globally
+- `VSCode Harpoon: Go to global editor [1-9] (vscode-harpoon.gotoGlobalEditor[1-9])` Goes to global
+  editor [1-9]
+- `VSCode Harpoon: Edit Global Editors (vscode-harpoon.editGlobalEditors)` Opens an editor for you
+  do delete or move added editors around.
 
 ## Example Keybinds
 
+### VSCode
+
+```json
+// keybindings.json
+[
+  {
+    "key": "alt+a",
+    "commands": ["vscode-harpoon.addEditor"]
+  },
+  {
+    "key": "alt+e",
+    "commands": ["vscode-harpoon.editEditors"]
+  },
+  {
+    "key": "alt+1",
+    "command": "vscode-harpoon.gotoEditor1"
+  }
+]
+```
+
 ### VSCode Vim
 
-### VSCode
+```json
+// settings.json
+{
+  "vim.leader": " ",
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["<leader>", "a"],
+      "commands": ["vscode-harpoon.addEditor"]
+    },
+    {
+      "before": ["<leader>", "e"],
+      "commands": ["vscode-harpoon.editEditors"]
+    },
+    {
+      "before": ["<leader>", "1"],
+      "commands": ["vscode-harpoon.gotoEditor1"]
+    }
+    // ...
+  ]
+}
+```
 
 ---
 
