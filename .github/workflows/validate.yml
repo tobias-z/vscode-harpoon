@@ -11,6 +11,11 @@ jobs:
   validate:
     # ignore all-contributors PRs
     if: ${{ !contains(github.head_ref, 'all-contributors') }}
+    env:
+      PUSH_PACKAGES:
+        ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && matrix.os ==
+        'ubuntu-latest' }}
+      VSCE_PAT: ${{ secrets.VSCE_PAT }}
     strategy:
       matrix:
         # windows-latest for some reason is not in the same directory during tests as mac and linux
@@ -50,3 +55,7 @@ jobs:
           run: |
             yarn pretest
             yarn test
+
+      - name: Deploy
+        if: ${{ env.PUSH_PACKAGES }}
+        run: yarn deploy

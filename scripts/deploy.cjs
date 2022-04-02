@@ -3,7 +3,7 @@ const { process } = require("./utils.cjs");
 
 async function deploy() {
   executeCommand("yarn update-version");
-  executeCommand("yarn deploy");
+  executeCommand("vsce publish --yarn");
 }
 
 process(deploy);
