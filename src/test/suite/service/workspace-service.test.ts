@@ -3,7 +3,7 @@ import { beforeEach } from "mocha";
 import ActiveProjectService from "../../../service/active-project-service";
 import WorkspaceService from "../../../service/workspace-service";
 import * as assert from "assert";
-import { getSlash } from "../../utils";
+import { getSlash } from "../../../util/system";
 
 suite("workspace service", () => {
   let workspaceService: WorkspaceService;
