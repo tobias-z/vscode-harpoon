@@ -1,5 +1,6 @@
 import * as vscode from "vscode";
 import * as assert from "assert";
+import { getSlash } from "../utils";
 
 suite("Harpoon runs correctly", () => {
   test("can add files and go to them", async function () {
@@ -25,11 +26,11 @@ suite("Harpoon runs correctly", () => {
 });
 
 async function openFile(fileName: string) {
-  const doc = await vscode.workspace.openTextDocument(`${process.cwd()}/${fileName}`);
+  const doc = await vscode.workspace.openTextDocument(`${process.cwd()}${getSlash()}${fileName}`);
   return await vscode.window.showTextDocument(doc);
 }
 
 function isFileName(fileName: string) {
   const currentFile = vscode.window.activeTextEditor?.document.fileName;
-  assert.strictEqual(`${process.cwd()}/${fileName}`, currentFile);
+  assert.strictEqual(`${process.cwd()}${getSlash()}${fileName}`, currentFile);
 }
