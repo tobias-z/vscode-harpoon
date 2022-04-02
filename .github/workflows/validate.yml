@@ -1,0 +1,52 @@
+name: validate
+
+on:
+  push:
+  pull_request:
+    branches:
+      - "dev"
+      - "main"
+
+jobs:
+  validate:
+    # ignore all-contributors PRs
+    if: ${{ !contains(github.head_ref, 'all-contributors') }}
+    strategy:
+      matrix:
+        # windows-latest for some reason is not in the same directory during tests as mac and linux
+        # which means that process.cwd()\package.json doesn't exist
+        # Any ideas as to how this could be fixed?
+        os: [macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: 🛑 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.0
+
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v2
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - name: Get Yarn cache directory
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: Use Yarn cache
+        uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock')}}
+
+      - name: Install dependencies
+        run: yarn install --prefer-offline --frozen-lockfile
+
+      - name: ▶️ Run tests
+        uses: GabrielBB/xvfb-action@v1
+        with:
+          run: |
+            yarn pretest
+            yarn test

@@ -1,70 +1,100 @@
-# vscode-harpoon README
+<div align="center">
 
-This is the README for your extension "vscode-harpoon". After writing up a brief description, we recommend including the following sections.
+# VS Code Harpoon
+
+VS Code Harpoon is inspired by The Primeagen's [Harpoon](https://github.com/ThePrimeagen/harpoon)
+plugin for neovim. It supports the basic use case of file navigation just like with Harpoon.
+
+![GitHub](https://img.shields.io/github/workflow/status/tobias-z/vscode-harpoon/validate/main)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+
+</div>
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+VSCode Harpoon is a file navigation tool, which lets you mark editors and jump to your marked
+editors.
 
-For example if there is an image subfolder under your extension project workspace:
+When adding your first editor, it will be set as `editor 1`, the next `editor 2` and so on.
 
-\!\[feature X\]\(images/feature-x.png\)
+You are then able to jump to `editor 1` or `editor 2` from anywhere in your workspace.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+![Navigation Example](images/navigation.gif)
 
-## Requirements
+### Available Commands
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+- `VSCode Harpoon: Add Editor (vscode-harpoon.addEditor)` adds the current editor to your workspace
+- `VSCode Harpoon: Go to editor [1-9] (vscode-harpoon.gotoEditor[1-9])` Goes to workspace editor
+  [1-9]
+- `VSCode Harpoon: Edit Editors (vscode-harpoon.editEditors)` Opens an editor for you do delete or
+  move added editors around.
+- `VSCode Harpoon: Add Global Editor (vscode-harpoon.addGlobalEditor)` adds the current editor
+  globally
+- `VSCode Harpoon: Go to global editor [1-9] (vscode-harpoon.gotoGlobalEditor[1-9])` Goes to global
+  editor [1-9]
+- `VSCode Harpoon: Edit Global Editors (vscode-harpoon.editGlobalEditors)` Opens an editor for you
+  do delete or move added editors around.
 
-## Extension Settings
+## Example Keybinds
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+### VSCode (`keybindings.json`)
 
-For example:
+```json
+[
+  {
+    "key": "alt+a",
+    "commands": ["vscode-harpoon.addEditor"]
+  },
+  {
+    "key": "alt+e",
+    "commands": ["vscode-harpoon.editEditors"]
+  },
+  {
+    "key": "alt+1",
+    "command": "vscode-harpoon.gotoEditor1"
+  }
+]
+```
 
-This extension contributes the following settings:
+### VSCode Vim (`settings.json`)
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+```json
+{
+  "vim.leader": " ",
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["<leader>", "a"],
+      "commands": ["vscode-harpoon.addEditor"]
+    },
+    {
+      "before": ["<leader>", "e"],
+      "commands": ["vscode-harpoon.editEditors"]
+    },
+    {
+      "before": ["<leader>", "1"],
+      "commands": ["vscode-harpoon.gotoEditor1"]
+    }
+  ]
+}
+```
 
-## Known Issues
+---
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+## Issues
 
-## Release Notes
+Looking to contribute? Please read the `CONTRIBUTING.md` file, which contains information about
+making a PR.
 
-Users appreciate release notes as you update your extension.
+Any feedback is very appreciated!
 
-### 1.0.0
+### 🪲 Bugs
 
-Initial release of ...
+Please file an issue for bugs, missing documentation, unexpected behavior etc.
 
-### 1.0.1
+[**Create bug report**](https://github.com/tobias-z/vscode-harpoon/issues/new?assignees=&labels=&template=bug_report.md&title=)
 
-Fixed issue #.
+### 🕯 Feature Requests
 
-### 1.1.0
+Please file an issue to suggest new features. Vote on feature requests by adding a 👍.
 
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+[**Create Feature Requests**](https://github.com/tobias-z/vscode-harpoon/issues/new?assignees=&labels=&template=feature_request.md&title=)
