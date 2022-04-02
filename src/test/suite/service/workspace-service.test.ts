@@ -3,6 +3,7 @@ import { beforeEach } from "mocha";
 import ActiveProjectService from "../../../service/active-project-service";
 import WorkspaceService from "../../../service/workspace-service";
 import * as assert from "assert";
+import { getSlash } from "../../utils";
 
 suite("workspace service", () => {
   let workspaceService: WorkspaceService;
@@ -18,15 +19,15 @@ suite("workspace service", () => {
   });
 
   test("can change editor", async () => {
-    const expected = `${process.cwd()}/package.json`;
+    const expected = `${process.cwd()}${getSlash()}package.json`;
     activeProjectService.addEditor({ fileName: expected });
     const doc = await workspaceService.changeEditor(1);
     assert.strictEqual(doc?.document.fileName, expected);
   });
 
   test("can change back and forth between editors", async () => {
-    const packageJson = `${process.cwd()}/package.json`;
-    const gitIgnore = `${process.cwd()}/.gitignore`;
+    const packageJson = `${process.cwd()}${getSlash()}package.json`;
+    const gitIgnore = `${process.cwd()}${getSlash()}.gitignore`;
 
     activeProjectService.addEditor({ fileName: packageJson });
     const firstDoc = await workspaceService.changeEditor(1);

@@ -18,7 +18,7 @@ export default class WorkspaceService {
     if (!editor) {
       return;
     }
-    const doc = await vscode.workspace.openTextDocument(editor.fileName);
+    const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(editor.fileName));
     return await vscode.window.showTextDocument(doc);
   }
 
