@@ -3,7 +3,7 @@
   "name": "vscode-harpoon",
   "displayName": "vscode-harpoon",
   "description": "A vscode clone of the vim plugin Harpoon created by The Primeagen",
-  "version": "0.9.10",
+  "version": "1.0.0",
   "license": "MIT",
   "homepage": "https://github.com/tobias-z/vscode-harpoon/blob/main/README.md",
   "repository": {
@@ -152,7 +152,7 @@
     "test": "node ./out/test/runTest.js",
     "setup": "yarn && yarn pretest && yarn test",
     "update-version": "node scripts/version.cjs",
-    "deploy": "node scripts/delpoy.cjs"
+    "deploy": "vsce publish --yarn"
   },
   "devDependencies": {
     "@types/glob": "^7.2.0",
