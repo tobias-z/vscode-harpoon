@@ -26,7 +26,9 @@ suite("Harpoon runs correctly", () => {
 });
 
 async function openFile(fileName: string) {
-  const uri = vscode.Uri.file(`${process.cwd()}${getSlash()}${fileName}`);
+  const name = `${process.cwd()}${getSlash()}${fileName}`;
+  const uri = vscode.Uri.file(name);
+  console.log("name: " + name, "uri: " + uri);
   const doc = await vscode.workspace.openTextDocument(uri);
   return await vscode.window.showTextDocument(doc);
 }
