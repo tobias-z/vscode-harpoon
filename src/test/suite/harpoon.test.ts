@@ -2,7 +2,8 @@ import * as vscode from "vscode";
 import * as assert from "assert";
 
 suite("Harpoon runs correctly", () => {
-  test("can add files and go to them", async () => {
+  test("can add files and go to them", async function () {
+    this.timeout(10000);
     await openFile("package.json");
     await vscode.commands.executeCommand("vscode-harpoon.addEditor");
 
