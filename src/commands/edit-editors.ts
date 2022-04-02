@@ -17,7 +17,7 @@ function isEditor(editor: string) {
   if (!isWindows()) {
     return editor.startsWith(getSlash());
   }
-  return editor.startsWith("c:");
+  return editor.startsWith("c:") || editor.startsWith("C:");
 }
 
 export default function createEditEditorsCommand(
@@ -40,16 +40,31 @@ export default function createEditEditorsCommand(
     });
   }
 
-  function onEditorCloseListener(filePath: vscode.Uri, onDispose: () => void) {
-    const disposable = vscode.workspace.onDidCloseTextDocument(doc => {
+  function onEditorCloseListener(uri: vscode.Uri, onDispose: () => void) {
+    const changeVisabilityDisposable = vscode.window.onDidChangeVisibleTextEditors(event => {
+      const hasHarpoonFileOpen = event.find(editor =>
+        editor.document.fileName.includes(HARPOON_FILE)
+      );
+      if (hasHarpoonFileOpen) {
+        return;
+      }
+      deleteHarpoonFile();
+    });
+
+    const closedDocumentDisposable = vscode.workspace.onDidCloseTextDocument(doc => {
       if (!doc.fileName.includes(HARPOON_FILE)) {
         return;
       }
-      vscode.workspace.fs.delete(filePath);
-      disposable.dispose();
+      deleteHarpoonFile();
+    });
+
+    function deleteHarpoonFile() {
+      vscode.workspace.fs.delete(uri);
+      closedDocumentDisposable.dispose();
+      changeVisabilityDisposable.dispose();
       onDispose();
       workspaceService.saveWorkspace();
-    });
+    }
   }
 
   function insertCurrentEditors(textEditor: vscode.TextEditor) {
@@ -73,8 +88,8 @@ export default function createEditEditorsCommand(
     }
     prepareEditFile(workspace).then(filePath => {
       const disposable = onEditListener();
-      onEditorCloseListener(filePath, disposable.dispose);
       vscode.workspace.openTextDocument(filePath).then(doc => {
+        onEditorCloseListener(filePath, disposable.dispose);
         vscode.window.showTextDocument(doc).then(textEditor => {
           insertCurrentEditors(textEditor);
         });
