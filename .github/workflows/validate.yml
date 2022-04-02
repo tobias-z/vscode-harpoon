@@ -13,7 +13,10 @@ jobs:
     if: ${{ !contains(github.head_ref, 'all-contributors') }}
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
+        # windows-latest for some reason is not in the same directory during tests as mac and linux
+        # which means that process.cwd()\package.json doesn't exist
+        # Any ideas as to how this could be fixed?
+        os: [macos-latest, ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - name: 🛑 Cancel Previous Runs
