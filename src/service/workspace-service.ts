@@ -18,11 +18,7 @@ export default class WorkspaceService {
     if (!editor) {
       return;
     }
-    let fileName = editor.fileName;
-    if (fileName.endsWith("\r")) {
-      fileName = fileName.substring(0, fileName.lastIndexOf("\r"));
-    }
-    const doc = await vscode.workspace.openTextDocument(fileName);
+    const doc = await vscode.workspace.openTextDocument(editor.fileName.trim());
     return await vscode.window.showTextDocument(doc);
   }
 

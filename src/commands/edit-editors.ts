@@ -89,8 +89,8 @@ export default function createEditEditorsCommand(
     prepareEditFile(workspace).then(filePath => {
       const disposable = onEditListener();
       vscode.workspace.openTextDocument(filePath).then(doc => {
-        onEditorCloseListener(filePath, disposable.dispose);
         vscode.window.showTextDocument(doc).then(textEditor => {
+          onEditorCloseListener(filePath, disposable.dispose);
           insertCurrentEditors(textEditor);
         });
       });
