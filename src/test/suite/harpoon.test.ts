@@ -1,6 +1,7 @@
 import * as vscode from "vscode";
 import * as assert from "assert";
 import { getSlash } from "../utils";
+import * as fs from "fs/promises";
 
 suite("Harpoon runs correctly", () => {
   test("can add files and go to them", async function () {
@@ -26,11 +27,9 @@ suite("Harpoon runs correctly", () => {
 });
 
 async function openFile(fileName: string) {
-  const name = `${process.cwd()}${getSlash()}${fileName}`;
-  const uri = vscode.Uri.file(name);
-  console.log("workspace: " + vscode.workspace.rootPath);
-  console.log("name: " + name, "uri: " + uri);
-  const doc = await vscode.workspace.openTextDocument(uri);
+  const file = vscode.Uri.file(`${process.cwd()}${getSlash()}${fileName}`);
+  const doc = await vscode.workspace.openTextDocument(file);
+  (await fs.readdir(process.cwd())).forEach(console.log);
   return await vscode.window.showTextDocument(doc);
 }
 
