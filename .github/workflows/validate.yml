@@ -45,4 +45,5 @@ jobs:
         uses: GabrielBB/xvfb-action@v1
         with:
           run: |
-            yarn lint
+            yarn pretest
+            yarn test
