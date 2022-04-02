@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import ActiveProjectService from "../service/active-project-service";
 import WorkspaceService from "../service/workspace-service";
-import { getSlash } from "../util/system";
+import { getSlash, isWindows } from "../util/system";
 
 const HARPOON_FILE = "vscodeHarpoon.harpoon";
 
@@ -11,6 +11,13 @@ function prepareEditFile(workspace: readonly vscode.WorkspaceFolder[]) {
   const filePath = vscode.Uri.file(`${wsPath}${getSlash()}${HARPOON_FILE}`);
   wsedit.createFile(filePath, { overwrite: true });
   return vscode.workspace.applyEdit(wsedit).then(() => filePath);
+}
+
+function isEditor(editor: string) {
+  if (!isWindows()) {
+    return editor.startsWith(getSlash());
+  }
+  return editor.startsWith("c:");
 }
 
 export default function createEditEditorsCommand(
@@ -25,7 +32,7 @@ export default function createEditEditorsCommand(
         activeProjectService.activeEditors = e.document
           .getText()
           .split("\n")
-          .filter(editor => editor.startsWith(getSlash()))
+          .filter(isEditor)
           .map(editor => ({
             fileName: editor,
           }));
