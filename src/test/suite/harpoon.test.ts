@@ -1,7 +1,6 @@
 import * as vscode from "vscode";
 import * as assert from "assert";
 import { getSlash } from "../../util/system";
-import * as fs from "fs/promises";
 
 suite("Harpoon runs correctly", () => {
   test("can add files and go to them", async function () {
