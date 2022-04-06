@@ -40,4 +40,11 @@ suite("workspace service", () => {
     assert.strictEqual(secondWorkspace, gitIgnore);
     assert.notStrictEqual(firstWorkspace, secondWorkspace);
   });
+
+  test("can change editor with fileName", async () => {
+    const expected = `${process.cwd()}${getSlash()}package.json`;
+    activeProjectService.addEditor({ fileName: expected });
+    const doc = await workspaceService.changeEditorByName(expected);
+    assert.strictEqual(doc?.document.fileName, expected);
+  });
 });
