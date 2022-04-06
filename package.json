@@ -146,7 +146,7 @@
       },
       {
         "command": "vscode-harpoon.editorGlobalQuickPick",
-        "title": "VSCode Harpoon: Editor Global  Quick Pick"
+        "title": "VSCode Harpoon: Editor Global Quick Pick"
       }
     ]
   },

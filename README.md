@@ -28,12 +28,16 @@ You are then able to jump to `editor 1` or `editor 2` from anywhere in your work
   [1-9]
 - `VSCode Harpoon: Edit Editors (vscode-harpoon.editEditors)` Opens an editor for you do delete or
   move added editors around.
+- `VSCode Harpoon: Editor Quick Pick (vscode-harpoon.editorQuickPick)` Opens a quick pick menu to
+  pick between your current workspace editors
 - `VSCode Harpoon: Add Global Editor (vscode-harpoon.addGlobalEditor)` adds the current editor
   globally
 - `VSCode Harpoon: Go to global editor [1-9] (vscode-harpoon.gotoGlobalEditor[1-9])` Goes to global
   editor [1-9]
 - `VSCode Harpoon: Edit Global Editors (vscode-harpoon.editGlobalEditors)` Opens an editor for you
   do delete or move added editors around.
+- `VSCode Harpoon: Editor Global Quick Pick (vscode-harpoon.editorGlobalQuickPick)` Opens a quick
+  pick menu to pick between your global editors
 
 ## Example Keybinds
 
@@ -48,6 +52,10 @@ You are then able to jump to `editor 1` or `editor 2` from anywhere in your work
   {
     "key": "alt+e",
     "commands": ["vscode-harpoon.editEditors"]
+  },
+  {
+    "key": "alt+p",
+    "commands": ["vscode-harpoon.editorQuickPick"]
   },
   {
     "key": "alt+1",
@@ -69,6 +77,10 @@ You are then able to jump to `editor 1` or `editor 2` from anywhere in your work
     {
       "before": ["<leader>", "e"],
       "commands": ["vscode-harpoon.editEditors"]
+    },
+    {
+      "before": ["<leader>", "p", "e"],
+      "commands": ["vscode-harpoon.editorQuickPick"]
     },
     {
       "before": ["<leader>", "1"],
