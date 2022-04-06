@@ -15,9 +15,6 @@ export default class WorkspaceService {
 
   public async changeEditorById(id: number) {
     const editor = this.activeProjectService.getEditor(id);
-    if (!editor) {
-      return;
-    }
     return await this.changeFile(editor);
   }
 
@@ -25,18 +22,18 @@ export default class WorkspaceService {
     const editor = this.activeProjectService.activeEditors.find(
       editor => editor.fileName === editorName
     );
-    if (!editor) {
-      return;
-    }
     return await this.changeFile(editor);
-  }
-
-  private async changeFile(editor: Editor) {
-    const doc = await vscode.workspace.openTextDocument(editor.fileName.trim());
-    return await vscode.window.showTextDocument(doc);
   }
 
   public saveWorkspace() {
     this.context[this.state].update(this.stateKey, this.activeProjectService.activeEditors);
+  }
+
+  private async changeFile(editor?: Editor) {
+    if (!editor) {
+      return;
+    }
+    const doc = await vscode.workspace.openTextDocument(editor.fileName.trim());
+    return await vscode.window.showTextDocument(doc);
   }
 }
