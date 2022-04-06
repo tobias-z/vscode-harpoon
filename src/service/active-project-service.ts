@@ -1,4 +1,4 @@
-type Editor = {
+export type Editor = {
   fileName: string;
 };
 
