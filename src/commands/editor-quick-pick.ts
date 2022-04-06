@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
-import ActiveProjectService from "../service/active-project-service";
+import ActiveProjectService, { Editor } from "../service/active-project-service";
 import WorkspaceService from "../service/workspace-service";
 
 export default function createEditorQuickPickCommand(
@@ -7,14 +7,21 @@ export default function createEditorQuickPickCommand(
   workspaceService: WorkspaceService
 ) {
   return async () => {
-    const items = activeProjectService.activeEditors.map(editor => editor.fileName);
-    const pickedEditor = await vscode.window.showQuickPick(items, {
-      title: "Editor Quick Pick",
-    });
+    const items = activeProjectService.activeEditors.map(toQuickPickItem);
+    const pickedEditor = await vscode.window.showQuickPick(items);
     if (!pickedEditor) {
       return;
     }
 
-    workspaceService.changeEditorByName(pickedEditor);
+    workspaceService.changeEditorByName(pickedEditor.description!);
+  };
+}
+
+function toQuickPickItem(editor: Editor) {
+  const label = editor.fileName.substring(editor.fileName.lastIndexOf("/") + 1);
+
+  return {
+    label,
+    description: editor.fileName,
   };
 }
