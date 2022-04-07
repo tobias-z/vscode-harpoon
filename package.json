@@ -3,7 +3,7 @@
   "name": "vscode-harpoon",
   "displayName": "VSCode Harpoon",
   "description": "A vscode clone of the vim plugin Harpoon created by The Primeagen",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "license": "MIT",
   "homepage": "https://github.com/tobias-z/vscode-harpoon/blob/main/README.md",
   "repository": {
@@ -35,6 +35,7 @@
     "onCommand:vscode-harpoon.gotoEditor7",
     "onCommand:vscode-harpoon.gotoEditor8",
     "onCommand:vscode-harpoon.gotoEditor9",
+    "onCommand:vscode-harpoon.editorQuickPick",
     "onCommand:vscode-harpoon.addGlobalEditor",
     "onCommand:vscode-harpoon.editGlobalEditors",
     "onCommand:vscode-harpoon.gotoGlobalEditor1",
@@ -45,7 +46,8 @@
     "onCommand:vscode-harpoon.gotoGlobalEditor6",
     "onCommand:vscode-harpoon.gotoGlobalEditor7",
     "onCommand:vscode-harpoon.gotoGlobalEditor8",
-    "onCommand:vscode-harpoon.gotoGlobalEditor9"
+    "onCommand:vscode-harpoon.gotoGlobalEditor9",
+    "onCommand:vscode-harpoon.editorGlobalQuickPick"
   ],
   "main": "./dist/harpoon.js",
   "contributes": {
@@ -95,6 +97,10 @@
         "title": "VSCode Harpoon: Go to editor 9"
       },
       {
+        "command": "vscode-harpoon.editorQuickPick",
+        "title": "VSCode Harpoon: Editor Quick Pick"
+      },
+      {
         "command": "vscode-harpoon.addGlobalEditor",
         "title": "VSCode Harpoon: Add Global Editor"
       },
@@ -137,6 +143,10 @@
       {
         "command": "vscode-harpoon.gotoGlobalEditor9",
         "title": "VSCode Harpoon: Go to global editor 9"
+      },
+      {
+        "command": "vscode-harpoon.editorGlobalQuickPick",
+        "title": "VSCode Harpoon: Editor Global Quick Pick"
       }
     ]
   },
@@ -149,7 +159,7 @@
     "watch-tests": "tsc -p . -w --outDir out",
     "pretest": "yarn compile-tests && yarn compile && yarn lint",
     "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js",
+    "test": "node ./out/tests/runTest.js",
     "setup": "yarn && yarn pretest && yarn test",
     "update-version": "node scripts/version.cjs",
     "deploy": "vsce publish --yarn"

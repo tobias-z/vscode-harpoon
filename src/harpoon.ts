@@ -6,6 +6,7 @@ import CommandFactory from "./commands/command-factory";
 import { createGotoEditorCommand } from "./commands/goto-editor";
 import createAddEditorCommand from "./commands/add-editor";
 import createEditEditorsCommand from "./commands/edit-editors";
+import createEditorQuickPickCommand from "./commands/editor-quick-pick";
 
 export type State = "workspaceState" | "globalState";
 
@@ -50,4 +51,8 @@ function registerCommands(
   commandFactory.registerCommand(`goto${key}Editor7`, gotoEditor(7));
   commandFactory.registerCommand(`goto${key}Editor8`, gotoEditor(8));
   commandFactory.registerCommand(`goto${key}Editor9`, gotoEditor(9));
+  commandFactory.registerCommand(
+    `editor${key}QuickPick`,
+    createEditorQuickPickCommand(activeProjectService, workspaceService)
+  );
 }

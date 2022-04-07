@@ -15,6 +15,7 @@ function prepareEditFile(workspace: readonly vscode.WorkspaceFolder[]) {
 
 function isEditor(editor: string) {
   if (!isWindows()) {
+    editor.startsWith(getSlash());
     return editor.startsWith(getSlash());
   }
   return editor.startsWith("c:") || editor.startsWith("C:");

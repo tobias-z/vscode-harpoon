@@ -12,6 +12,7 @@ type CommandName =
   | "gotoEditor7"
   | "gotoEditor8"
   | "gotoEditor9"
+  | "editorQuickPick"
   | "addGlobalEditor"
   | "editGlobalEditors"
   | "gotoGlobalEditor1"
@@ -22,7 +23,8 @@ type CommandName =
   | "gotoGlobalEditor6"
   | "gotoGlobalEditor7"
   | "gotoGlobalEditor8"
-  | "gotoGlobalEditor9";
+  | "gotoGlobalEditor9"
+  | "editorGlobalQuickPick";
 
 export default class CommandFactory {
   constructor(private readonly context: vscode.ExtensionContext) {}
