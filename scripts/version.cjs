@@ -14,6 +14,7 @@ async function version() {
   const packageJson = await getPackageJson();
   packageJson.version = getNewVersion(packageJson.version, isMinor);
   await fs.writeFile(getPath(), JSON.stringify(packageJson));
+  executeCommand(`git tag v${packageJson.version}`);
 }
 
 function getNewVersion(currentVersion, isMinor) {
