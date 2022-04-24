@@ -2,13 +2,14 @@ import * as vscode from "vscode";
 import ActiveProjectService from "../service/active-project-service";
 import WorkspaceService from "../service/workspace-service";
 import { getSlash, isWindows } from "../util/system";
+import { homedir } from "os";
 
 const HARPOON_FILE = "vscodeHarpoon.harpoon";
 
-function prepareEditFile(workspace: readonly vscode.WorkspaceFolder[]) {
+function prepareEditFile() {
   const wsedit = new vscode.WorkspaceEdit();
-  const wsPath = workspace[0].uri.fsPath; // gets the path of the first workspace folder
-  const filePath = vscode.Uri.file(`${wsPath}${getSlash()}${HARPOON_FILE}`);
+  const slash = getSlash();
+  const filePath = vscode.Uri.file(`${homedir()}${slash}.vscode${slash}${HARPOON_FILE}`);
   wsedit.createFile(filePath, { overwrite: true });
   return vscode.workspace.applyEdit(wsedit).then(() => filePath);
 }
@@ -87,7 +88,7 @@ export default function createEditEditorsCommand(
     if (!workspace || vscode.window.activeTextEditor?.document.fileName.endsWith(HARPOON_FILE)) {
       return;
     }
-    prepareEditFile(workspace).then(filePath => {
+    prepareEditFile().then(filePath => {
       const disposable = onEditListener();
       vscode.workspace.openTextDocument(filePath).then(doc => {
         vscode.window.showTextDocument(doc).then(textEditor => {
