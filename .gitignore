@@ -3,5 +3,6 @@ dist
 node_modules
 .vscode-test/
 *.vsix
+.idea
 
 yarn.lock

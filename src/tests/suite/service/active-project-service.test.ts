@@ -16,4 +16,13 @@ suite("active project service", () => {
     assert.notStrictEqual(actual, null);
     assert.strictEqual(actual.fileName, expected);
   });
+
+  test("given two files when they are equal then only one is added", () => {
+    const name = "bob";
+    activeProjectService.addEditor({ fileName: name });
+    activeProjectService.addEditor({ fileName: name });
+    const expected = 1;
+    const actual = activeProjectService.activeEditors.length;
+    assert.strictEqual(actual, expected);
+  });
 });
