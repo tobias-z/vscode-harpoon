@@ -4,6 +4,10 @@
 - Changed location of vscodeHarpoon.harpoon file to ~/.vscode/vscodeHarpoon.harpoon so that it wont
   be accidentally committed to git
 
+## [1.1.0] - 2022-04-07
+
+- Add the ability to use a quick pick menu for navigation
+
 ## [0.0.1 - 1.0.0] - 2022-03-27
 
 - Initial release
