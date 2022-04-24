@@ -2,10 +2,16 @@ export type Editor = {
   fileName: string;
 };
 
+function getTrimmedEditor(editor: Editor) {
+  editor.fileName = editor.fileName.trim();
+  return editor;
+}
+
 export default class ActiveProjectService {
   constructor(private _activeEditors: Editor[]) {}
 
   public addEditor(editor: Editor) {
+    editor = getTrimmedEditor(editor);
     if (this.hasEditor(this.activeEditors, editor)) {
       return;
     }
@@ -18,6 +24,7 @@ export default class ActiveProjectService {
 
   public set activeEditors(editors: Editor[]) {
     this._activeEditors = editors.reduce((prev, curr) => {
+      curr = getTrimmedEditor(curr);
       if (!this.hasEditor(prev, curr)) {
         prev.push(curr);
       }
