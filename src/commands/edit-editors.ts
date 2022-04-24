@@ -84,7 +84,7 @@ export default function createEditEditorsCommand(
 
   return () => {
     const workspace = vscode.workspace.workspaceFolders;
-    if (!workspace) {
+    if (!workspace || vscode.window.activeTextEditor?.document.fileName.endsWith(HARPOON_FILE)) {
       return;
     }
     prepareEditFile(workspace).then(filePath => {
