@@ -1,195 +1,195 @@
 {
-  "publisher": "tobias-z",
-  "name": "vscode-harpoon",
-  "displayName": "VSCode Harpoon",
-  "description": "A vscode clone of the vim plugin Harpoon created by The Primeagen",
-  "version": "1.1.1",
-  "license": "MIT",
-  "homepage": "https://github.com/tobias-z/vscode-harpoon/blob/main/README.md",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/tobias-z/vscode-harpoon.git"
-  },
-  "bugs": {
-    "url": "https://github.com/tobias-z/vscode-harpoon/issues"
-  },
-  "engines": {
-    "vscode": "^1.65.0"
-  },
-  "icon": "images/icon.png",
-  "extensionKind": [
-    "workspace"
-  ],
-  "categories": [
-    "Other"
-  ],
-  "activationEvents": [
-    "onCommand:vscode-harpoon.addEditor",
-    "onCommand:vscode-harpoon.editEditors",
-    "onCommand:vscode-harpoon.gotoEditor1",
-    "onCommand:vscode-harpoon.gotoEditor2",
-    "onCommand:vscode-harpoon.gotoEditor3",
-    "onCommand:vscode-harpoon.gotoEditor4",
-    "onCommand:vscode-harpoon.gotoEditor5",
-    "onCommand:vscode-harpoon.gotoEditor6",
-    "onCommand:vscode-harpoon.gotoEditor7",
-    "onCommand:vscode-harpoon.gotoEditor8",
-    "onCommand:vscode-harpoon.gotoEditor9",
-    "onCommand:vscode-harpoon.editorQuickPick",
-    "onCommand:vscode-harpoon.addGlobalEditor",
-    "onCommand:vscode-harpoon.editGlobalEditors",
-    "onCommand:vscode-harpoon.gotoGlobalEditor1",
-    "onCommand:vscode-harpoon.gotoGlobalEditor2",
-    "onCommand:vscode-harpoon.gotoGlobalEditor3",
-    "onCommand:vscode-harpoon.gotoGlobalEditor4",
-    "onCommand:vscode-harpoon.gotoGlobalEditor5",
-    "onCommand:vscode-harpoon.gotoGlobalEditor6",
-    "onCommand:vscode-harpoon.gotoGlobalEditor7",
-    "onCommand:vscode-harpoon.gotoGlobalEditor8",
-    "onCommand:vscode-harpoon.gotoGlobalEditor9",
-    "onCommand:vscode-harpoon.editorGlobalQuickPick"
-  ],
-  "main": "./dist/harpoon.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "vscode-harpoon.addEditor",
-        "title": "VSCode Harpoon: Add Editor"
-      },
-      {
-        "command": "vscode-harpoon.editEditors",
-        "title": "VSCode Harpoon: Edit Editors"
-      },
-      {
-        "command": "vscode-harpoon.gotoEditor1",
-        "title": "VSCode Harpoon: Go to editor 1"
-      },
-      {
-        "command": "vscode-harpoon.gotoEditor2",
-        "title": "VSCode Harpoon: Go to editor 2"
-      },
-      {
-        "command": "vscode-harpoon.gotoEditor3",
-        "title": "VSCode Harpoon: Go to editor 3"
-      },
-      {
-        "command": "vscode-harpoon.gotoEditor4",
-        "title": "VSCode Harpoon: Go to editor 4"
-      },
-      {
-        "command": "vscode-harpoon.gotoEditor5",
-        "title": "VSCode Harpoon: Go to editor 5"
-      },
-      {
-        "command": "vscode-harpoon.gotoEditor6",
-        "title": "VSCode Harpoon: Go to editor 6"
-      },
-      {
-        "command": "vscode-harpoon.gotoEditor7",
-        "title": "VSCode Harpoon: Go to editor 7"
-      },
-      {
-        "command": "vscode-harpoon.gotoEditor8",
-        "title": "VSCode Harpoon: Go to editor 8"
-      },
-      {
-        "command": "vscode-harpoon.gotoEditor9",
-        "title": "VSCode Harpoon: Go to editor 9"
-      },
-      {
-        "command": "vscode-harpoon.editorQuickPick",
-        "title": "VSCode Harpoon: Editor Quick Pick"
-      },
-      {
-        "command": "vscode-harpoon.addGlobalEditor",
-        "title": "VSCode Harpoon: Add Global Editor"
-      },
-      {
-        "command": "vscode-harpoon.editGlobalEditors",
-        "title": "VSCode Harpoon: Edit Global Editors"
-      },
-      {
-        "command": "vscode-harpoon.gotoGlobalEditor1",
-        "title": "VSCode Harpoon: Go to global editor 1"
-      },
-      {
-        "command": "vscode-harpoon.gotoGlobalEditor2",
-        "title": "VSCode Harpoon: Go to global editor 2"
-      },
-      {
-        "command": "vscode-harpoon.gotoGlobalEditor3",
-        "title": "VSCode Harpoon: Go to global editor 3"
-      },
-      {
-        "command": "vscode-harpoon.gotoGlobalEditor4",
-        "title": "VSCode Harpoon: Go to global editor 4"
-      },
-      {
-        "command": "vscode-harpoon.gotoGlobalEditor5",
-        "title": "VSCode Harpoon: Go to global editor 5"
-      },
-      {
-        "command": "vscode-harpoon.gotoGlobalEditor6",
-        "title": "VSCode Harpoon: Go to global editor 6"
-      },
-      {
-        "command": "vscode-harpoon.gotoGlobalEditor7",
-        "title": "VSCode Harpoon: Go to global editor 7"
-      },
-      {
-        "command": "vscode-harpoon.gotoGlobalEditor8",
-        "title": "VSCode Harpoon: Go to global editor 8"
-      },
-      {
-        "command": "vscode-harpoon.gotoGlobalEditor9",
-        "title": "VSCode Harpoon: Go to global editor 9"
-      },
-      {
-        "command": "vscode-harpoon.editorGlobalQuickPick",
-        "title": "VSCode Harpoon: Editor Global Quick Pick"
-      }
-    ]
-  },
-  "scripts": {
-    "vscode:prepublish": "yarn run package",
-    "compile": "webpack",
-    "watch": "webpack --watch",
-    "package": "webpack --mode production --devtool hidden-source-map",
-    "compile-tests": "tsc -p . --outDir out",
-    "watch-tests": "tsc -p . -w --outDir out",
-    "pretest": "yarn compile-tests && yarn compile && yarn lint",
-    "lint": "eslint src --ext ts",
-    "test": "node ./out/tests/runTest.js",
-    "setup": "yarn && yarn pretest && yarn test",
-    "update-version": "node scripts/version.cjs",
-    "deploy": "vsce publish --yarn",
-    "fmt": "prettier --write '**/*.{css,js,ts,json}'"
-  },
-  "devDependencies": {
-    "@types/glob": "^7.2.0",
-    "@types/mocha": "^9.1.0",
-    "@types/node": "14.x",
-    "@types/vscode": "^1.65.0",
-    "@typescript-eslint/eslint-plugin": "^5.12.1",
-    "@typescript-eslint/parser": "^5.12.1",
-    "@vscode/test-electron": "^2.1.2",
-    "eslint": "^8.9.0",
-    "glob": "^7.2.0",
-    "husky": "^7.0.4",
-    "lint-staged": ">=10",
-    "mocha": "^9.2.1",
-    "prettier": "^2.5.1",
-    "ts-loader": "^9.2.6",
-    "typescript": "^4.5.5",
-    "vsce": "^2.7.0",
-    "webpack": "^5.69.1",
-    "webpack-cli": "^4.9.2"
-  },
-  "lint-staged": {
-    "**/*.+(js|json|ts)": [
-      "prettier --write",
-      "yarn pretest",
-      "yarn test"
-    ]
-  }
+    "publisher": "tobias-z",
+    "name": "vscode-harpoon",
+    "displayName": "VSCode Harpoon",
+    "description": "A vscode clone of the vim plugin Harpoon created by The Primeagen",
+    "version": "1.1.1",
+    "license": "MIT",
+    "homepage": "https://github.com/tobias-z/vscode-harpoon/blob/main/README.md",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/tobias-z/vscode-harpoon.git"
+    },
+    "bugs": {
+        "url": "https://github.com/tobias-z/vscode-harpoon/issues"
+    },
+    "engines": {
+        "vscode": "^1.65.0"
+    },
+    "icon": "images/icon.png",
+    "extensionKind": [
+        "workspace"
+    ],
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:vscode-harpoon.addEditor",
+        "onCommand:vscode-harpoon.editEditors",
+        "onCommand:vscode-harpoon.gotoEditor1",
+        "onCommand:vscode-harpoon.gotoEditor2",
+        "onCommand:vscode-harpoon.gotoEditor3",
+        "onCommand:vscode-harpoon.gotoEditor4",
+        "onCommand:vscode-harpoon.gotoEditor5",
+        "onCommand:vscode-harpoon.gotoEditor6",
+        "onCommand:vscode-harpoon.gotoEditor7",
+        "onCommand:vscode-harpoon.gotoEditor8",
+        "onCommand:vscode-harpoon.gotoEditor9",
+        "onCommand:vscode-harpoon.editorQuickPick",
+        "onCommand:vscode-harpoon.addGlobalEditor",
+        "onCommand:vscode-harpoon.editGlobalEditors",
+        "onCommand:vscode-harpoon.gotoGlobalEditor1",
+        "onCommand:vscode-harpoon.gotoGlobalEditor2",
+        "onCommand:vscode-harpoon.gotoGlobalEditor3",
+        "onCommand:vscode-harpoon.gotoGlobalEditor4",
+        "onCommand:vscode-harpoon.gotoGlobalEditor5",
+        "onCommand:vscode-harpoon.gotoGlobalEditor6",
+        "onCommand:vscode-harpoon.gotoGlobalEditor7",
+        "onCommand:vscode-harpoon.gotoGlobalEditor8",
+        "onCommand:vscode-harpoon.gotoGlobalEditor9",
+        "onCommand:vscode-harpoon.editorGlobalQuickPick"
+    ],
+    "main": "./dist/harpoon.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "vscode-harpoon.addEditor",
+                "title": "VSCode Harpoon: Add Editor"
+            },
+            {
+                "command": "vscode-harpoon.editEditors",
+                "title": "VSCode Harpoon: Edit Editors"
+            },
+            {
+                "command": "vscode-harpoon.gotoEditor1",
+                "title": "VSCode Harpoon: Go to editor 1"
+            },
+            {
+                "command": "vscode-harpoon.gotoEditor2",
+                "title": "VSCode Harpoon: Go to editor 2"
+            },
+            {
+                "command": "vscode-harpoon.gotoEditor3",
+                "title": "VSCode Harpoon: Go to editor 3"
+            },
+            {
+                "command": "vscode-harpoon.gotoEditor4",
+                "title": "VSCode Harpoon: Go to editor 4"
+            },
+            {
+                "command": "vscode-harpoon.gotoEditor5",
+                "title": "VSCode Harpoon: Go to editor 5"
+            },
+            {
+                "command": "vscode-harpoon.gotoEditor6",
+                "title": "VSCode Harpoon: Go to editor 6"
+            },
+            {
+                "command": "vscode-harpoon.gotoEditor7",
+                "title": "VSCode Harpoon: Go to editor 7"
+            },
+            {
+                "command": "vscode-harpoon.gotoEditor8",
+                "title": "VSCode Harpoon: Go to editor 8"
+            },
+            {
+                "command": "vscode-harpoon.gotoEditor9",
+                "title": "VSCode Harpoon: Go to editor 9"
+            },
+            {
+                "command": "vscode-harpoon.editorQuickPick",
+                "title": "VSCode Harpoon: Editor Quick Pick"
+            },
+            {
+                "command": "vscode-harpoon.addGlobalEditor",
+                "title": "VSCode Harpoon: Add Global Editor"
+            },
+            {
+                "command": "vscode-harpoon.editGlobalEditors",
+                "title": "VSCode Harpoon: Edit Global Editors"
+            },
+            {
+                "command": "vscode-harpoon.gotoGlobalEditor1",
+                "title": "VSCode Harpoon: Go to global editor 1"
+            },
+            {
+                "command": "vscode-harpoon.gotoGlobalEditor2",
+                "title": "VSCode Harpoon: Go to global editor 2"
+            },
+            {
+                "command": "vscode-harpoon.gotoGlobalEditor3",
+                "title": "VSCode Harpoon: Go to global editor 3"
+            },
+            {
+                "command": "vscode-harpoon.gotoGlobalEditor4",
+                "title": "VSCode Harpoon: Go to global editor 4"
+            },
+            {
+                "command": "vscode-harpoon.gotoGlobalEditor5",
+                "title": "VSCode Harpoon: Go to global editor 5"
+            },
+            {
+                "command": "vscode-harpoon.gotoGlobalEditor6",
+                "title": "VSCode Harpoon: Go to global editor 6"
+            },
+            {
+                "command": "vscode-harpoon.gotoGlobalEditor7",
+                "title": "VSCode Harpoon: Go to global editor 7"
+            },
+            {
+                "command": "vscode-harpoon.gotoGlobalEditor8",
+                "title": "VSCode Harpoon: Go to global editor 8"
+            },
+            {
+                "command": "vscode-harpoon.gotoGlobalEditor9",
+                "title": "VSCode Harpoon: Go to global editor 9"
+            },
+            {
+                "command": "vscode-harpoon.editorGlobalQuickPick",
+                "title": "VSCode Harpoon: Editor Global Quick Pick"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "yarn run package",
+        "compile": "webpack",
+        "watch": "webpack --watch",
+        "package": "webpack --mode production --devtool hidden-source-map",
+        "compile-tests": "tsc -p . --outDir out",
+        "watch-tests": "tsc -p . -w --outDir out",
+        "pretest": "yarn compile-tests && yarn compile && yarn lint",
+        "lint": "eslint src --ext ts",
+        "test": "node ./out/tests/runTest.js",
+        "setup": "yarn && yarn pretest && yarn test",
+        "update-version": "node scripts/version.cjs",
+        "deploy": "vsce publish --yarn",
+        "fmt": "prettier --write '**/*.{css,js,ts,json}'"
+    },
+    "devDependencies": {
+        "@types/glob": "^7.2.0",
+        "@types/mocha": "^9.1.0",
+        "@types/node": "14.x",
+        "@types/vscode": "^1.65.0",
+        "@typescript-eslint/eslint-plugin": "^5.12.1",
+        "@typescript-eslint/parser": "^5.12.1",
+        "@vscode/test-electron": "^2.1.2",
+        "eslint": "^8.9.0",
+        "glob": "^7.2.0",
+        "husky": "^7.0.4",
+        "lint-staged": ">=10",
+        "mocha": "^9.2.1",
+        "prettier": "^2.5.1",
+        "ts-loader": "^9.2.6",
+        "typescript": "^4.5.5",
+        "vsce": "^2.7.0",
+        "webpack": "^5.69.1",
+        "webpack-cli": "^4.9.2"
+    },
+    "lint-staged": {
+        "**/*.+(js|json|ts)": [
+            "prettier --write",
+            "yarn pretest",
+            "yarn test"
+        ]
+    }
 }
