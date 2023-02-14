@@ -1,42 +1,53 @@
 export type Editor = {
-  fileName: string;
+    editorId?: number;
+    fileName: string;
 };
 
 function getTrimmedEditor(editor: Editor) {
-  editor.fileName = editor.fileName.trim();
-  return editor;
+    editor.fileName = editor.fileName.trim();
+    return editor;
 }
 
 export default class ActiveProjectService {
-  constructor(private _activeEditors: Editor[]) {}
+    constructor(private _activeEditors: Editor[]) {}
 
-  public addEditor(editor: Editor) {
-    editor = getTrimmedEditor(editor);
-    if (this.hasEditor(this.activeEditors, editor)) {
-      return;
+    public addEditor(editor: Editor) {
+        editor = getTrimmedEditor(editor);
+        if (this.hasEditor(this._activeEditors, editor) && !editor.editorId) {
+            return;
+        }
+        if (editor.editorId) {
+            // Ensure that the editor is always put at the decided index
+            for (let i = 0; i < editor.editorId; i++) {
+                if (this._activeEditors.length < i) {
+                    this._activeEditors.push({
+                        fileName: "_",
+                    });
+                }
+            }
+            this._activeEditors[editor.editorId - 1] = editor;
+        } else {
+            this._activeEditors.push(editor);
+        }
     }
-    this._activeEditors.push(editor);
-  }
 
-  public getEditor(id: number) {
-    return this._activeEditors[id - 1];
-  }
+    public getEditor(id: number) {
+        return this._activeEditors[id - 1];
+    }
 
-  public set activeEditors(editors: Editor[]) {
-    this._activeEditors = editors.reduce((prev, curr) => {
-      curr = getTrimmedEditor(curr);
-      if (!this.hasEditor(prev, curr)) {
-        prev.push(curr);
-      }
-      return prev;
-    }, [] as Editor[]);
-  }
+    public set activeEditors(editors: Editor[]) {
+        this._activeEditors = editors.reduce((prev, curr) => {
+            curr = getTrimmedEditor(curr);
+            prev.push(curr);
+            return prev;
+        }, [] as Editor[]);
+    }
 
-  public get activeEditors(): Editor[] {
-    return this._activeEditors;
-  }
+    public get activeEditors(): Editor[] {
+        return this._activeEditors;
+    }
 
-  private hasEditor(editors: Editor[], editor: Editor) {
-    return editors.find(e => e.fileName === editor.fileName);
-  }
+    private hasEditor(editors: Editor[], editor: Editor) {
+        return editors.find(e => e.fileName === editor.fileName);
+    }
 }
