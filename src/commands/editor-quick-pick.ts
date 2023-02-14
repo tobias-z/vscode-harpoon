@@ -7,7 +7,9 @@ export default function createEditorQuickPickCommand(
     workspaceService: WorkspaceService
 ) {
     return async () => {
-        const items = activeProjectService.activeEditors.map(toQuickPickItem);
+        const items = activeProjectService.activeEditors
+            .filter(editor => editor.fileName !== "_")
+            .map(toQuickPickItem);
         const pickedEditor = await vscode.window.showQuickPick(items);
         if (!pickedEditor) {
             return;
