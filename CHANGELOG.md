@@ -1,3 +1,7 @@
+## [1.2.1]
+
+- Allow jumping to already open splits
+
 ## [1.2.0]
 
 - Allow the ability to be specific about which id you want your editor to be at. such as addEditor5

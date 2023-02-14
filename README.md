@@ -24,6 +24,7 @@ You are then able to jump to `editor 1` or `editor 2` from anywhere in your work
 ### Available Commands
 
 - `VSCode Harpoon: Add Editor (vscode-harpoon.addEditor)` adds the current editor to your workspace
+- `VSCode Harpoon: Add Editor [1-9] (vscode-harpoon.addEditor[1-9])` adds the editor at the specified index
 - `VSCode Harpoon: Go to editor [1-9] (vscode-harpoon.gotoEditor[1-9])` Goes to workspace editor
   [1-9]
 - `VSCode Harpoon: Edit Editors (vscode-harpoon.editEditors)` Opens an editor for you do delete or
@@ -32,12 +33,23 @@ You are then able to jump to `editor 1` or `editor 2` from anywhere in your work
   pick between your current workspace editors
 - `VSCode Harpoon: Add Global Editor (vscode-harpoon.addGlobalEditor)` adds the current editor
   globally
+- `VSCode Harpoon: Add Global Editor [1-9] (vscode-harpoon.addGlobalEditor[1-9])` adds the editor globally at the specified index
 - `VSCode Harpoon: Go to global editor [1-9] (vscode-harpoon.gotoGlobalEditor[1-9])` Goes to global
   editor [1-9]
 - `VSCode Harpoon: Edit Global Editors (vscode-harpoon.editGlobalEditors)` Opens an editor for you
   do delete or move added editors around.
 - `VSCode Harpoon: Editor Global Quick Pick (vscode-harpoon.editorGlobalQuickPick)` Opens a quick
   pick menu to pick between your global editors
+
+## Troubleshooting
+
+If desired the extension does support jumping to already open editors in different split panes. However, for this to work you need to add a property to your settings.json:
+
+```json
+{
+  "workbench.editor.revealIfOpen": true
+}
+```
 
 ## Example Keybinds
 

@@ -33,6 +33,11 @@ export default class WorkspaceService {
         if (!editor) {
             return;
         }
+        for (const e of vscode.window.visibleTextEditors) {
+            if (e.document.fileName.trim() === editor.fileName.trim()) {
+                return await vscode.window.showTextDocument(e.document);
+            }
+        }
         const doc = await vscode.workspace.openTextDocument(editor.fileName.trim());
         return await vscode.window.showTextDocument(doc);
     }
