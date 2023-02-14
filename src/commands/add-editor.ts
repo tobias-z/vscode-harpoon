@@ -6,15 +6,18 @@ export default function createAddEditorCommand(
     activeProjectService: ActiveProjectService,
     workspaceService: WorkspaceService
 ) {
-    return () => {
-        const editor = vscode.window.activeTextEditor;
-        if (!editor || editor.document.fileName.startsWith("Untitled")) {
-            return;
-        }
+    return (editorId?: number) => {
+        return () => {
+            const editor = vscode.window.activeTextEditor;
+            if (!editor || editor.document.fileName.startsWith("Untitled")) {
+                return;
+            }
 
-        activeProjectService.addEditor({
-            fileName: editor.document.fileName,
-        });
-        workspaceService.saveWorkspace();
+            activeProjectService.addEditor({
+                editorId,
+                fileName: editor.document.fileName,
+            });
+            workspaceService.saveWorkspace();
+        };
     };
 }

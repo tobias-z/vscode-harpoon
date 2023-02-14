@@ -23,32 +23,6 @@
     "categories": [
         "Other"
     ],
-    "activationEvents": [
-        "onCommand:vscode-harpoon.addEditor",
-        "onCommand:vscode-harpoon.editEditors",
-        "onCommand:vscode-harpoon.gotoEditor1",
-        "onCommand:vscode-harpoon.gotoEditor2",
-        "onCommand:vscode-harpoon.gotoEditor3",
-        "onCommand:vscode-harpoon.gotoEditor4",
-        "onCommand:vscode-harpoon.gotoEditor5",
-        "onCommand:vscode-harpoon.gotoEditor6",
-        "onCommand:vscode-harpoon.gotoEditor7",
-        "onCommand:vscode-harpoon.gotoEditor8",
-        "onCommand:vscode-harpoon.gotoEditor9",
-        "onCommand:vscode-harpoon.editorQuickPick",
-        "onCommand:vscode-harpoon.addGlobalEditor",
-        "onCommand:vscode-harpoon.editGlobalEditors",
-        "onCommand:vscode-harpoon.gotoGlobalEditor1",
-        "onCommand:vscode-harpoon.gotoGlobalEditor2",
-        "onCommand:vscode-harpoon.gotoGlobalEditor3",
-        "onCommand:vscode-harpoon.gotoGlobalEditor4",
-        "onCommand:vscode-harpoon.gotoGlobalEditor5",
-        "onCommand:vscode-harpoon.gotoGlobalEditor6",
-        "onCommand:vscode-harpoon.gotoGlobalEditor7",
-        "onCommand:vscode-harpoon.gotoGlobalEditor8",
-        "onCommand:vscode-harpoon.gotoGlobalEditor9",
-        "onCommand:vscode-harpoon.editorGlobalQuickPick"
-    ],
     "main": "./dist/harpoon.js",
     "contributes": {
         "commands": [
@@ -59,6 +33,42 @@
             {
                 "command": "vscode-harpoon.editEditors",
                 "title": "VSCode Harpoon: Edit Editors"
+            },
+            {
+                "command": "vscode-harpoon.addEditor1",
+                "title": "VSCode Harpoon: Add Editor 1"
+            },
+            {
+                "command": "vscode-harpoon.addEditor2",
+                "title": "VSCode Harpoon: Add Editor 2"
+            },
+            {
+                "command": "vscode-harpoon.addEditor3",
+                "title": "VSCode Harpoon: Add Editor 3"
+            },
+            {
+                "command": "vscode-harpoon.addEditor4",
+                "title": "VSCode Harpoon: Add Editor 4"
+            },
+            {
+                "command": "vscode-harpoon.addEditor5",
+                "title": "VSCode Harpoon: Add Editor 5"
+            },
+            {
+                "command": "vscode-harpoon.addEditor6",
+                "title": "VSCode Harpoon: Add Editor 6"
+            },
+            {
+                "command": "vscode-harpoon.addEditor7",
+                "title": "VSCode Harpoon: Add Editor 7"
+            },
+            {
+                "command": "vscode-harpoon.addEditor8",
+                "title": "VSCode Harpoon: Add Editor 8"
+            },
+            {
+                "command": "vscode-harpoon.addEditor9",
+                "title": "VSCode Harpoon: Add Editor 9"
             },
             {
                 "command": "vscode-harpoon.gotoEditor1",
@@ -107,6 +117,42 @@
             {
                 "command": "vscode-harpoon.editGlobalEditors",
                 "title": "VSCode Harpoon: Edit Global Editors"
+            },
+            {
+                "command": "vscode-harpoon.addGlobalEditor1",
+                "title": "VSCode Harpoon: Add Global Editor 1"
+            },
+            {
+                "command": "vscode-harpoon.addGlobalEditor2",
+                "title": "VSCode Harpoon: Add Global Editor 2"
+            },
+            {
+                "command": "vscode-harpoon.addGlobalEditor3",
+                "title": "VSCode Harpoon: Add Global Editor 3"
+            },
+            {
+                "command": "vscode-harpoon.addGlobalEditor4",
+                "title": "VSCode Harpoon: Add Global Editor 4"
+            },
+            {
+                "command": "vscode-harpoon.addGlobalEditor5",
+                "title": "VSCode Harpoon: Add Global Editor 5"
+            },
+            {
+                "command": "vscode-harpoon.addGlobalEditor6",
+                "title": "VSCode Harpoon: Add Global Editor 6"
+            },
+            {
+                "command": "vscode-harpoon.addGlobalEditor7",
+                "title": "VSCode Harpoon: Add Global Editor 7"
+            },
+            {
+                "command": "vscode-harpoon.addGlobalEditor8",
+                "title": "VSCode Harpoon: Add Global Editor 8"
+            },
+            {
+                "command": "vscode-harpoon.addGlobalEditor9",
+                "title": "VSCode Harpoon: Add Global Editor 9"
             },
             {
                 "command": "vscode-harpoon.gotoGlobalEditor1",
@@ -181,7 +227,7 @@
         "prettier": "^2.5.1",
         "ts-loader": "^9.2.6",
         "typescript": "^4.5.5",
-        "vsce": "^2.7.0",
+        "@vscode/vsce": "^2.7.0",
         "webpack": "^5.69.1",
         "webpack-cli": "^4.9.2"
     },

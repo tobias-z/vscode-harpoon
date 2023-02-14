@@ -33,15 +33,22 @@ function registerCommands(
     const gotoEditor = createGotoEditorCommand(workspaceService);
 
     const key = state === "globalState" ? "Global" : "";
+    const addEditor = createAddEditorCommand(activeProjectService, workspaceService);
 
-    commandFactory.registerCommand(
-        `add${key}Editor`,
-        createAddEditorCommand(activeProjectService, workspaceService)
-    );
+    commandFactory.registerCommand(`add${key}Editor`, addEditor());
     commandFactory.registerCommand(
         `edit${key}Editors`,
         createEditEditorsCommand(activeProjectService, workspaceService)
     );
+    commandFactory.registerCommand(`add${key}Editor1`, addEditor(1));
+    commandFactory.registerCommand(`add${key}Editor2`, addEditor(2));
+    commandFactory.registerCommand(`add${key}Editor3`, addEditor(3));
+    commandFactory.registerCommand(`add${key}Editor4`, addEditor(4));
+    commandFactory.registerCommand(`add${key}Editor5`, addEditor(5));
+    commandFactory.registerCommand(`add${key}Editor6`, addEditor(6));
+    commandFactory.registerCommand(`add${key}Editor7`, addEditor(7));
+    commandFactory.registerCommand(`add${key}Editor8`, addEditor(8));
+    commandFactory.registerCommand(`add${key}Editor9`, addEditor(9));
     commandFactory.registerCommand(`goto${key}Editor1`, gotoEditor(1));
     commandFactory.registerCommand(`goto${key}Editor2`, gotoEditor(2));
     commandFactory.registerCommand(`goto${key}Editor3`, gotoEditor(3));
