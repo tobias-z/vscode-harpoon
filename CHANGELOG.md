@@ -1,3 +1,7 @@
+## [1.2.0]
+
+- Allow the ability to be specific about which id you want your editor to be at. such as addEditor5
+
 ## [1.1.1]
 
 - Fixed bug where editors would be added multiple times
