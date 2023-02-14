@@ -6,15 +6,20 @@ import { homedir } from "os";
 
 const HARPOON_FILE = "vscodeHarpoon.harpoon";
 
-function prepareEditFile() {
+async function prepareEditFile() {
     const wsedit = new vscode.WorkspaceEdit();
     const slash = getSlash();
     const filePath = vscode.Uri.file(`${homedir()}${slash}.vscode${slash}${HARPOON_FILE}`);
     wsedit.createFile(filePath, { overwrite: true });
-    return vscode.workspace.applyEdit(wsedit).then(() => filePath);
+    await vscode.workspace.applyEdit(wsedit);
+    return filePath;
 }
 
 function isEditor(editor: string) {
+    // Used as a filler value
+    if (editor === "_") {
+        return true;
+    }
     if (!isWindows()) {
         editor.startsWith(getSlash());
         return editor.startsWith(getSlash());

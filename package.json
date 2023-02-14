@@ -36,7 +36,7 @@
             },
             {
                 "command": "vscode-harpoon.addEditor1",
-                "title": "VSCode Harpoon: Add Editor 2"
+                "title": "VSCode Harpoon: Add Editor 1"
             },
             {
                 "command": "vscode-harpoon.addEditor2",

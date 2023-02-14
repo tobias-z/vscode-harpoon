@@ -1,4 +1,5 @@
 export type Editor = {
+    editorId?: number;
     fileName: string;
 };
 
@@ -12,10 +13,22 @@ export default class ActiveProjectService {
 
     public addEditor(editor: Editor) {
         editor = getTrimmedEditor(editor);
-        if (this.hasEditor(this.activeEditors, editor)) {
+        if (this.hasEditor(this._activeEditors, editor) && !editor.editorId) {
             return;
         }
-        this._activeEditors.push(editor);
+        if (editor.editorId) {
+            // Ensure that the editor is always put at the decided index
+            for (let i = 0; i < editor.editorId; i++) {
+                if (this._activeEditors.length < i) {
+                    this._activeEditors.push({
+                        fileName: "_",
+                    });
+                }
+            }
+            this._activeEditors[editor.editorId - 1] = editor;
+        } else {
+            this._activeEditors.push(editor);
+        }
     }
 
     public getEditor(id: number) {
@@ -25,9 +38,7 @@ export default class ActiveProjectService {
     public set activeEditors(editors: Editor[]) {
         this._activeEditors = editors.reduce((prev, curr) => {
             curr = getTrimmedEditor(curr);
-            if (!this.hasEditor(prev, curr)) {
-                prev.push(curr);
-            }
+            prev.push(curr);
             return prev;
         }, [] as Editor[]);
     }
@@ -37,6 +48,7 @@ export default class ActiveProjectService {
     }
 
     private hasEditor(editors: Editor[], editor: Editor) {
+        // We allow multiple empty lines so that someone can always add an editor to whatever number they want
         return editors.find(e => e.fileName === editor.fileName);
     }
 }
