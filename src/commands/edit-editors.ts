@@ -5,6 +5,7 @@ import { getSlash, isWindows } from "../util/system";
 import { homedir } from "os";
 
 const HARPOON_FILE = "vscodeHarpoon.harpoon";
+const DRIVES = ["C:", "c:", "D:", "d:"];
 
 async function prepareEditFile() {
     const wsedit = new vscode.WorkspaceEdit();
@@ -24,7 +25,7 @@ function isEditor(editor: string) {
         editor.startsWith(getSlash());
         return editor.startsWith(getSlash());
     }
-    return editor.startsWith("c:") || editor.startsWith("C:");
+    return DRIVES.some(drive => editor.startsWith(drive));
 }
 
 export default function createEditEditorsCommand(
