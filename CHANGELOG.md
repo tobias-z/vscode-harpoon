@@ -1,3 +1,7 @@
+## [1.2.2]
+
+- Allow files living on the windows D drive to be marked as editors.
+
 ## [1.2.1]
 
 - Allow jumping to already open splits
