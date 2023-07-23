@@ -2,6 +2,10 @@
 
 - Added ability to use vscode-harpoon inside a 'Live Share' (https://learn.microsoft.com/en-us/visualstudio/liveshare/) session.
 
+## [1.2.2]
+
+- Allow files living on the windows D drive to be marked as editors.
+
 ## [1.2.1]
 
 - Allow jumping to already open splits
