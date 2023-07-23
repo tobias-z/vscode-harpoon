@@ -38,7 +38,17 @@ export default class WorkspaceService {
                 return await vscode.window.showTextDocument(e.document);
             }
         }
-        const doc = await vscode.workspace.openTextDocument(editor.fileName.trim());
-        return await vscode.window.showTextDocument(doc);
+        try {
+            const uri = vscode.Uri.file(editor.fileName.trim());
+            await vscode.workspace.fs.stat(uri);
+            const doc = await vscode.workspace.openTextDocument(uri);
+            return await vscode.window.showTextDocument(doc);
+        } catch {
+            // Fix to allow changing to files inside a 'Live Share' session (https://github.com/tobias-z/vscode-harpoon/issues/25)
+            const doc = vscode.workspace.textDocuments.find(doc => doc.fileName.trim() === editor.fileName.trim());
+            if (doc) {
+                return await vscode.window.showTextDocument(doc);
+            }
+        }
     }
 }
