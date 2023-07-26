@@ -45,7 +45,6 @@ export default class ActiveProjectService {
         if (hasActualEditor) {
             this._activeEditors = editors.map(getTrimmedEditor);
         } else {
-            console.log("no editor");
             this._activeEditors = [];
         }
     }
