@@ -8,9 +8,12 @@ export default function createEditorQuickPickCommand(
 ) {
     return async () => {
         const quickPick = vscode.window.createQuickPick();
-        quickPick.items = activeProjectService.activeEditors
-            .filter(editor => editor.fileName !== "_")
-            .map(toQuickPickItem);
+        quickPick.items = activeProjectService.activeEditors.reduce((acc, editor, i) => {
+            if (editor.fileName !== "_") {
+                acc.push(toQuickPickItem(editor, i));
+            }
+            return acc;
+        }, [] as vscode.QuickPickItem[]);
 
         quickPick.onDidAccept(() => {
             if (quickPick.selectedItems.length !== 1) {
@@ -25,14 +28,26 @@ export default function createEditorQuickPickCommand(
         });
 
         quickPick.onDidTriggerItemButton(e => {
-            const itemToRemove = e.item.description!;
-            activeProjectService.activeEditors = activeProjectService.activeEditors.filter(
-                item => item.fileName !== itemToRemove
+            quickPick.items = quickPick.items.filter(item => item.label !== e.item.label);
+
+            const removedItemIndex = Number(e.item.label.substring(0, 1)) - 1;
+            const hasIndexSpecificEditorAfter = activeProjectService.activeEditors.find(
+                (editor, i) => i > removedItemIndex && editor.fileName === "_"
             );
-            quickPick.items = quickPick.items.filter(
-                item => item.description !== e.item.description
-            );
+            if (hasIndexSpecificEditorAfter) {
+                // keep the indexes as they are
+                activeProjectService.activeEditors[removedItemIndex] = {
+                    fileName: "_",
+                };
+            } else {
+                activeProjectService.activeEditors.splice(removedItemIndex, 1);
+            }
+
             workspaceService.saveWorkspace();
+            if (quickPick.items.length === 0) {
+                // no need to show the quick pick if the last one has been removed
+                quickPick.hide();
+            }
         });
 
         quickPick.onDidHide(quickPick.dispose);
@@ -40,11 +55,11 @@ export default function createEditorQuickPickCommand(
     };
 }
 
-function toQuickPickItem(editor: Editor): vscode.QuickPickItem {
+function toQuickPickItem(editor: Editor, i: number): vscode.QuickPickItem {
     const label = editor.fileName.substring(editor.fileName.lastIndexOf("/") + 1);
 
     return {
-        label,
+        label: `${i + 1}. ${label}`,
         description: editor.fileName,
         buttons: [
             {

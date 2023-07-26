@@ -27,7 +27,12 @@ export default class ActiveProjectService {
             }
             this._activeEditors[editor.editorId - 1] = editor;
         } else {
-            this._activeEditors.push(editor);
+            const firstFiller = this._activeEditors.findIndex(item => item.fileName === "_");
+            if (firstFiller === -1) {
+                this._activeEditors.push(editor);
+            } else {
+                this._activeEditors[firstFiller] = editor;
+            }
         }
     }
 
@@ -36,11 +41,13 @@ export default class ActiveProjectService {
     }
 
     public set activeEditors(editors: Editor[]) {
-        this._activeEditors = editors.reduce((prev, curr) => {
-            curr = getTrimmedEditor(curr);
-            prev.push(curr);
-            return prev;
-        }, [] as Editor[]);
+        const hasActualEditor = editors.find(e => e.fileName !== "_");
+        if (hasActualEditor) {
+            this._activeEditors = editors.map(getTrimmedEditor);
+        } else {
+            console.log("no editor");
+            this._activeEditors = [];
+        }
     }
 
     public get activeEditors(): Editor[] {
