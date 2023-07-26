@@ -31,9 +31,13 @@ export default function createEditorQuickPickCommand(
             quickPick.items = quickPick.items.filter(item => item.label !== e.item.label);
 
             const removedItemIndex = Number(e.item.label.substring(0, 1)) - 1;
-            const hasIndexSpecificEditorAfter = activeProjectService.activeEditors.find(
-                (editor, i) => i > removedItemIndex && editor.fileName === "_"
-            );
+            let hasIndexSpecificEditorAfter = false;
+            for (let i = removedItemIndex; i < activeProjectService.activeEditors.length; i++) {
+                if (activeProjectService.activeEditors[i].fileName === "_") {
+                    hasIndexSpecificEditorAfter = true;
+                    break;
+                }
+            }
             if (hasIndexSpecificEditorAfter) {
                 // keep the indexes as they are
                 activeProjectService.activeEditors[removedItemIndex] = {
