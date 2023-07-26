@@ -7,23 +7,69 @@ export default function createEditorQuickPickCommand(
     workspaceService: WorkspaceService
 ) {
     return async () => {
-        const items = activeProjectService.activeEditors
-            .filter(editor => editor.fileName !== "_")
-            .map(toQuickPickItem);
-        const pickedEditor = await vscode.window.showQuickPick(items);
-        if (!pickedEditor) {
-            return;
-        }
+        const quickPick = vscode.window.createQuickPick();
+        quickPick.items = activeProjectService.activeEditors.reduce((acc, editor, i) => {
+            if (editor.fileName !== "_") {
+                acc.push(toQuickPickItem(editor, i));
+            }
+            return acc;
+        }, [] as vscode.QuickPickItem[]);
 
-        workspaceService.changeEditorByName(pickedEditor.description!);
+        quickPick.onDidAccept(() => {
+            if (quickPick.selectedItems.length !== 1) {
+                // Not sure how this could happen but better be sure
+                return;
+            }
+            const pickedEditor = quickPick.selectedItems[0];
+            if (!pickedEditor) {
+                return;
+            }
+            workspaceService.changeEditorByName(pickedEditor.description!);
+        });
+
+        quickPick.onDidTriggerItemButton(e => {
+            quickPick.items = quickPick.items.filter(item => item.label !== e.item.label);
+
+            const removedItemIndex = Number(e.item.label.substring(0, 1)) - 1;
+            let hasIndexSpecificEditorAfter = false;
+            for (let i = removedItemIndex; i < activeProjectService.activeEditors.length; i++) {
+                if (activeProjectService.activeEditors[i].fileName === "_") {
+                    hasIndexSpecificEditorAfter = true;
+                    break;
+                }
+            }
+            if (hasIndexSpecificEditorAfter) {
+                // keep the indexes as they are
+                activeProjectService.activeEditors[removedItemIndex] = {
+                    fileName: "_",
+                };
+            } else {
+                activeProjectService.activeEditors.splice(removedItemIndex, 1);
+            }
+
+            workspaceService.saveWorkspace();
+            if (quickPick.items.length === 0) {
+                // no need to show the quick pick if the last one has been removed
+                quickPick.hide();
+            }
+        });
+
+        quickPick.onDidHide(quickPick.dispose);
+        quickPick.show();
     };
 }
 
-function toQuickPickItem(editor: Editor) {
+function toQuickPickItem(editor: Editor, i: number): vscode.QuickPickItem {
     const label = editor.fileName.substring(editor.fileName.lastIndexOf("/") + 1);
 
     return {
-        label,
+        label: `${i + 1}. ${label}`,
         description: editor.fileName,
+        buttons: [
+            {
+                iconPath: new vscode.ThemeIcon("trash"),
+                tooltip: "Remove",
+            },
+        ],
     };
 }
