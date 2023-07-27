@@ -1,3 +1,8 @@
+## [1.3.1]
+
+- Added the ability to remove an editor from the quick pick menu
+- Fixed bug where AddEditor would append after the latest editor, even if there was an index available before it (e.g. if an editor was added using AddEditor5)
+
 ## [1.3.0]
 
 - Added ability to use vscode-harpoon inside a 'Live Share' (https://learn.microsoft.com/en-us/visualstudio/liveshare/) session.
