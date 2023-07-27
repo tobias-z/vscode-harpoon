@@ -41,7 +41,7 @@ export default class ActiveProjectService {
     }
 
     public set activeEditors(editors: Editor[]) {
-        const hasActualEditor = editors.find(e => e.fileName !== "_");
+        const hasActualEditor = editors.some(e => e.fileName !== "_");
         if (hasActualEditor) {
             this._activeEditors = editors.map(getTrimmedEditor);
         } else {
@@ -54,6 +54,6 @@ export default class ActiveProjectService {
     }
 
     private hasEditor(editors: Editor[], editor: Editor) {
-        return editors.find(e => e.fileName === editor.fileName);
+        return editors.some(e => e.fileName === editor.fileName);
     }
 }

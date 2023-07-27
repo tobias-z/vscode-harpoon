@@ -50,7 +50,7 @@ export default function createEditEditorsCommand(
 
     function onEditorCloseListener(uri: vscode.Uri, onDispose: () => void) {
         const changeVisabilityDisposable = vscode.window.onDidChangeVisibleTextEditors(event => {
-            const hasHarpoonFileOpen = event.find(editor =>
+            const hasHarpoonFileOpen = event.some(editor =>
                 editor.document.fileName.includes(HARPOON_FILE)
             );
             if (hasHarpoonFileOpen) {
