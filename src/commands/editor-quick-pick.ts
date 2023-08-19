@@ -1,6 +1,7 @@
 import * as vscode from "vscode";
 import ActiveProjectService, { Editor } from "../service/active-project-service";
 import WorkspaceService from "../service/workspace-service";
+import { getSlash } from "../util/system";
 
 export default function createEditorQuickPickCommand(
     activeProjectService: ActiveProjectService,
@@ -60,7 +61,7 @@ export default function createEditorQuickPickCommand(
 }
 
 function toQuickPickItem(editor: Editor, i: number): vscode.QuickPickItem {
-    const label = editor.fileName.substring(editor.fileName.lastIndexOf("/") + 1);
+    const label = editor.fileName.substring(editor.fileName.lastIndexOf(getSlash()) + 1);
 
     return {
         label: `${i + 1}. ${label}`,

@@ -3,5 +3,5 @@ export function isWindows() {
 }
 
 export function getSlash() {
-    return process.platform === "win32" ? "\\" : "/";
+    return isWindows() ? "\\" : "/";
 }
