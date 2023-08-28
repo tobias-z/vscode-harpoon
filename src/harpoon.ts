@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import * as vscode from "vscode";
-import ActiveProjectService from "./service/active-project-service";
+import ActiveProjectService, { Editor } from "./service/active-project-service";
 import WorkspaceService from "./service/workspace-service";
 import CommandFactory from "./commands/command-factory";
 import { createGotoEditorCommand } from "./commands/goto-editor";
@@ -9,6 +9,11 @@ import createEditEditorsCommand from "./commands/edit-editors";
 import createEditorQuickPickCommand from "./commands/editor-quick-pick";
 
 export type State = "workspaceState" | "globalState";
+
+export type ProjectState = {
+    activeEditors: Editor[];
+    previousEditor?: Editor;
+};
 
 export function getStateKey(state: State) {
     return "vscodeHarpoon" + state;
@@ -26,9 +31,8 @@ function registerCommands(
     commandFactory: CommandFactory,
     state: State
 ) {
-    const activeProjectService = new ActiveProjectService(
-        context[state].get(getStateKey(state)) || []
-    );
+    const prevState = context[state].get<ProjectState>(getStateKey(state)) || { activeEditors: [] };
+    const activeProjectService = new ActiveProjectService(prevState.activeEditors);
     const workspaceService = new WorkspaceService(activeProjectService, context, state);
     const gotoEditor = createGotoEditorCommand(workspaceService);
 

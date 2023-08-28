@@ -107,6 +107,10 @@
                 "title": "VSCode Harpoon: Go to editor 9"
             },
             {
+                "command": "vscode-harpoon.gotoPreviousHarpoonEditor",
+                "title": "VSCode Harpoon: Go to previous harpoon editor"
+            },
+            {
                 "command": "vscode-harpoon.editorQuickPick",
                 "title": "VSCode Harpoon: Editor Quick Pick"
             },
@@ -193,6 +197,10 @@
             {
                 "command": "vscode-harpoon.editorGlobalQuickPick",
                 "title": "VSCode Harpoon: Editor Global Quick Pick"
+            },
+            {
+                "command": "vscode-harpoon.gotoPreviousGlobalHarpoonEditor",
+                "title": "VSCode Harpoon: Go to previous global harpoon editor"
             }
         ]
     },

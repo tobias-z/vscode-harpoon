@@ -15,18 +15,35 @@ export default class WorkspaceService {
 
     public async changeEditorById(id: number) {
         const editor = this.activeProjectService.getEditor(id);
-        return await this.changeFile(editor);
+        return await this.trackedPreviousEditor(() => this.changeFile(editor));
     }
 
     public async changeEditorByName(editorName: string) {
         const editor = this.activeProjectService.activeEditors.find(
             editor => editor.fileName === editorName
         );
-        return await this.changeFile(editor);
+        return await this.trackedPreviousEditor(() => this.changeFile(editor));
     }
 
     public saveWorkspace() {
-        this.context[this.state].update(this.stateKey, this.activeProjectService.activeEditors);
+        this.context[this.state].update(this.stateKey, {
+            activeEditors: this.activeProjectService.activeEditors,
+            previousEditor: this.activeProjectService.previousEditor,
+        });
+    }
+
+    private async trackedPreviousEditor<T>(cb: () => Promise<T>): Promise<T> {
+        const activeEditor = vscode.window.activeTextEditor;
+        if (!activeEditor) {
+            return await cb();
+        }
+        const previousEditor = activeEditor.document.fileName;
+        const res = await cb();
+        this.activeProjectService.previousEditor = {
+            fileName: previousEditor
+        };
+        this.saveWorkspace();
+        return res;
     }
 
     private async changeFile(editor?: Editor) {
