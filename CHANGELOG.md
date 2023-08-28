@@ -1,3 +1,7 @@
+## [1.4.0]
+
+- Added new command `gotoPreviousHarpoonEditor` allowing the ability to jump to the previous harpoon editor.
+
 ## [1.3.2]
 
 - Fixed bug in Windows where the user would not see the filename in the quick pick menu
