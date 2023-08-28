@@ -1,14 +1,20 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import * as vscode from "vscode";
-import ActiveProjectService from "./service/active-project-service";
+import ActiveProjectService, { Editor } from "./service/active-project-service";
 import WorkspaceService from "./service/workspace-service";
 import CommandFactory from "./commands/command-factory";
 import { createGotoEditorCommand } from "./commands/goto-editor";
 import createAddEditorCommand from "./commands/add-editor";
 import createEditEditorsCommand from "./commands/edit-editors";
 import createEditorQuickPickCommand from "./commands/editor-quick-pick";
+import createGotoPreviousHarpoonEditorCommand from "./commands/goto-previous-harpoon-editor";
 
 export type State = "workspaceState" | "globalState";
+
+export type ProjectState = {
+    activeEditors: Editor[];
+    previousEditor?: Editor;
+};
 
 export function getStateKey(state: State) {
     return "vscodeHarpoon" + state;
@@ -26,9 +32,15 @@ function registerCommands(
     commandFactory: CommandFactory,
     state: State
 ) {
-    const activeProjectService = new ActiveProjectService(
-        context[state].get(getStateKey(state)) || []
-    );
+    let prevState = context[state].get<ProjectState>(getStateKey(state));
+    if (!prevState) {
+        prevState = { activeEditors: [] };
+    }
+    // ensure compatability with old old harpoon editors. They might still have the old state as an array, so we need to mutate it to the new structure.
+    if (Array.isArray(prevState)) {
+        prevState = { activeEditors: prevState };
+    }
+    const activeProjectService = new ActiveProjectService(prevState.activeEditors, prevState.previousEditor);
     const workspaceService = new WorkspaceService(activeProjectService, context, state);
     const gotoEditor = createGotoEditorCommand(workspaceService);
 
@@ -61,5 +73,9 @@ function registerCommands(
     commandFactory.registerCommand(
         `editor${key}QuickPick`,
         createEditorQuickPickCommand(activeProjectService, workspaceService)
+    );
+    commandFactory.registerCommand(
+        `gotoPrevious${key}HarpoonEditor`,
+        createGotoPreviousHarpoonEditorCommand(activeProjectService, workspaceService)
     );
 }
