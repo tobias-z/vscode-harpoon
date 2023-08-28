@@ -6,7 +6,7 @@ export default function createGotoPreviousHarpoonEditorCommand(
     workspaceService: WorkspaceService
 ) {
     return () => {
-        const previousEditor = activeProjectService.previousEditor;
+        const previousEditor = activeProjectService.getPreviousEditor();
         if (!previousEditor) {
             return;
         }

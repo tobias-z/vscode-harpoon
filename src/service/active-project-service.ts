@@ -9,7 +9,7 @@ function getTrimmedEditor(editor: Editor) {
 }
 
 export default class ActiveProjectService {
-    constructor(private _activeEditors: Editor[], public previousEditor?: Editor) { }
+    constructor(private _activeEditors: Editor[], private _previousEditor?: Editor) { }
 
     public addEditor(editor: Editor) {
         editor = getTrimmedEditor(editor);
@@ -47,6 +47,14 @@ export default class ActiveProjectService {
         } else {
             this._activeEditors = [];
         }
+    }
+
+    public setPreviousEditor(editor: Editor) {
+        this._previousEditor = editor;
+    }
+
+    public getPreviousEditor(): Editor | undefined {
+        return this._previousEditor;
     }
 
     public get activeEditors(): Editor[] {

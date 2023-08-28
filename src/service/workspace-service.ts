@@ -28,7 +28,7 @@ export default class WorkspaceService {
     public saveWorkspace() {
         this.context[this.state].update(this.stateKey, {
             activeEditors: this.activeProjectService.activeEditors,
-            previousEditor: this.activeProjectService.previousEditor,
+            previousEditor: this.activeProjectService.getPreviousEditor(),
         });
     }
 
@@ -43,9 +43,9 @@ export default class WorkspaceService {
             fileName: previousEditor,
         };
         if (this.activeProjectService.hasEditor(editor)) {
-            this.activeProjectService.previousEditor = {
+            this.activeProjectService.setPreviousEditor({
                 fileName: previousEditor,
-            };
+            });
             this.saveWorkspace();
         }
         return res;
