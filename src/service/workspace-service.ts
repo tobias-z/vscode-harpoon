@@ -39,10 +39,15 @@ export default class WorkspaceService {
         }
         const previousEditor = activeEditor.document.fileName;
         const res = await cb();
-        this.activeProjectService.previousEditor = {
-            fileName: previousEditor
+        const editor: Editor = {
+            fileName: previousEditor,
         };
-        this.saveWorkspace();
+        if (this.activeProjectService.hasEditor(editor)) {
+            this.activeProjectService.previousEditor = {
+                fileName: previousEditor,
+            };
+            this.saveWorkspace();
+        }
         return res;
     }
 
