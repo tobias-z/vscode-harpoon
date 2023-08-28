@@ -32,7 +32,14 @@ function registerCommands(
     commandFactory: CommandFactory,
     state: State
 ) {
-    const prevState = context[state].get<ProjectState>(getStateKey(state)) || { activeEditors: [] };
+    let prevState = context[state].get<ProjectState>(getStateKey(state));
+    if (!prevState) {
+        prevState = { activeEditors: [] };
+    }
+    // ensure compatability with old old harpoon editors. They might still have the old state as an array, so we need to mutate it to the new structure.
+    if (Array.isArray(prevState)) {
+        prevState = { activeEditors: prevState };
+    }
     const activeProjectService = new ActiveProjectService(prevState.activeEditors);
     const workspaceService = new WorkspaceService(activeProjectService, context, state);
     const gotoEditor = createGotoEditorCommand(workspaceService);
