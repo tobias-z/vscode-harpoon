@@ -22,7 +22,6 @@ function isEditor(editor: string) {
         return true;
     }
     if (!isWindows()) {
-        editor.startsWith(getSlash());
         return editor.startsWith(getSlash());
     }
     return DRIVES.some(drive => editor.startsWith(drive));
@@ -39,7 +38,7 @@ export default function createEditEditorsCommand(
                 e.document.save();
                 activeProjectService.activeEditors = e.document
                     .getText()
-                    .split("\n")
+                    .split(/\r?\n/)
                     .filter(isEditor)
                     .map(editor => ({
                         fileName: editor,
