@@ -9,6 +9,8 @@ export default function createEditorQuickPickCommand(
 ) {
     return async () => {
         const quickPick = vscode.window.createQuickPick();
+        workspaceService.setQuickPickContext(true);
+
         quickPick.items = activeProjectService.activeEditors.reduce((acc, editor, i) => {
             if (editor.fileName !== "_") {
                 acc.push(toQuickPickItem(editor, i));
@@ -55,7 +57,10 @@ export default function createEditorQuickPickCommand(
             }
         });
 
-        quickPick.onDidHide(quickPick.dispose);
+        quickPick.onDidHide(() => { 
+            workspaceService.setQuickPickContext(false);
+            quickPick.dispose ;
+        });
         quickPick.show();
     };
 }
