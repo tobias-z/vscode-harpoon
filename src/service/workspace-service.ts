@@ -33,7 +33,7 @@ export default class WorkspaceService {
     }
 
     public setQuickPickContext(isQuickPick: boolean) {
-        vscode.commands.executeCommand("setContext", "vscode-harpoon.isQuickPick", isQuickPick)
+        vscode.commands.executeCommand("setContext", "vscode-harpoon.isQuickPick", isQuickPick);
     }
 
     private async trackedPreviousEditor<T>(cb: () => Promise<T>): Promise<T> {
