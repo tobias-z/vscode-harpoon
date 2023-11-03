@@ -43,6 +43,11 @@ You are then able to jump to `editor 1` or `editor 2` from anywhere in your work
   pick menu to pick between your global editors
 - `VSCode Harpoon: Go to previous global harpoon editor (vscode-harpoon.gotoPreviousGlobalHarpoonEditor)` Jumps to the previous global editor which was last jumped from using harpoon.
 
+### Available Contexts
+
+- `VSCode Harpoon: Quick Pick Visible (vscode-harpoon.isQuickPick)` Adds context for determining whether harpoon's quick pick list is visible.
+
+
 ## Troubleshooting
 
 If desired the extension does support jumping to already open editors in different split panes. However, for this to work you need to add a property to your settings.json:
