@@ -40,7 +40,10 @@ function registerCommands(
     if (Array.isArray(prevState)) {
         prevState = { activeEditors: prevState };
     }
-    const activeProjectService = new ActiveProjectService(prevState.activeEditors, prevState.previousEditor);
+    const activeProjectService = new ActiveProjectService(
+        prevState.activeEditors,
+        prevState.previousEditor
+    );
     const workspaceService = new WorkspaceService(activeProjectService, context, state);
     const gotoEditor = createGotoEditorCommand(workspaceService);
 

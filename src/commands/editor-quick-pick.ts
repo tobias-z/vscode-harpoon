@@ -57,7 +57,7 @@ export default function createEditorQuickPickCommand(
             }
         });
 
-        quickPick.onDidHide(() => { 
+        quickPick.onDidHide(() => {
             workspaceService.setQuickPickContext(false);
             quickPick.dispose();
         });

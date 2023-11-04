@@ -9,7 +9,7 @@ function getTrimmedEditor(editor: Editor) {
 }
 
 export default class ActiveProjectService {
-    constructor(private _activeEditors: Editor[], private _previousEditor?: Editor) { }
+    constructor(private _activeEditors: Editor[], private _previousEditor?: Editor) {}
 
     public addEditor(editor: Editor) {
         editor = getTrimmedEditor(editor);
