@@ -1,3 +1,8 @@
+## [1.5.0]
+
+- Fixed bug where the _ lines in the vscode-harpoon.harpoon file would be filtered out on Windows.
+- Added the ability to track if the vscode-harpoon quickPick is visible.
+
 ## [1.4.0]
 
 - Added new command `gotoPreviousHarpoonEditor` allowing the ability to jump to the previous harpoon editor.
