@@ -9,7 +9,7 @@ function getTrimmedEditor(editor: Editor) {
 }
 
 export default class ActiveProjectService {
-    constructor(private _activeEditors: Editor[], private _previousEditor?: Editor) {}
+    constructor(private _activeEditors: Editor[], private _previousEditor?: Editor) { }
 
     public addEditor(editor: Editor) {
         editor = getTrimmedEditor(editor);
@@ -38,6 +38,27 @@ export default class ActiveProjectService {
 
     public getEditor(id: number) {
         return this._activeEditors[id - 1];
+    }
+
+    public removeEditorByName(fileName: string) {
+        this._activeEditors = this._activeEditors.map(editor => {
+            if (editor.fileName !== fileName) {
+                return editor;
+            }
+            return {
+                fileName: "_",
+            };
+        });
+    }
+
+    public removeEditorById(id: number): boolean {
+        if (id > this._activeEditors.length) {
+            return false;
+        }
+        this._activeEditors[id] = {
+            fileName: "_",
+        };
+        return true;
     }
 
     public set activeEditors(editors: Editor[]) {

@@ -8,6 +8,8 @@ import createAddEditorCommand from "./commands/add-editor";
 import createEditEditorsCommand from "./commands/edit-editors";
 import createEditorQuickPickCommand from "./commands/editor-quick-pick";
 import createGotoPreviousHarpoonEditorCommand from "./commands/goto-previous-harpoon-editor";
+import { createRemoveCurrentEditorCommand } from "./commands/remove-current-editor";
+import { createRemoveEditorByIdCommand } from "./commands/remove-editor-by-id";
 
 export type State = "workspaceState" | "globalState";
 
@@ -81,4 +83,17 @@ function registerCommands(
         `gotoPrevious${key}HarpoonEditor`,
         createGotoPreviousHarpoonEditorCommand(activeProjectService, workspaceService)
     );
+
+    commandFactory.registerCommand(`removeCurrent${key}Editor`, createRemoveCurrentEditorCommand(workspaceService, activeProjectService));
+
+    const removeById = createRemoveEditorByIdCommand(workspaceService, activeProjectService);
+    commandFactory.registerCommand(`remove${key}Editor1`, removeById(1));
+    commandFactory.registerCommand(`remove${key}Editor2`, removeById(2));
+    commandFactory.registerCommand(`remove${key}Editor3`, removeById(3));
+    commandFactory.registerCommand(`remove${key}Editor4`, removeById(4));
+    commandFactory.registerCommand(`remove${key}Editor5`, removeById(5));
+    commandFactory.registerCommand(`remove${key}Editor6`, removeById(6));
+    commandFactory.registerCommand(`remove${key}Editor7`, removeById(7));
+    commandFactory.registerCommand(`remove${key}Editor8`, removeById(8));
+    commandFactory.registerCommand(`remove${key}Editor9`, removeById(9));
 }
