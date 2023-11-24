@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 
-type EditorRange = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+export type EditorRange = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
 type CommandName =
     | "addEditor"
