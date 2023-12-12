@@ -201,10 +201,6 @@
             {
                 "command": "vscode-harpoon.gotoPreviousGlobalHarpoonEditor",
                 "title": "VSCode Harpoon: Go to previous global harpoon editor"
-            },
-            {
-                "command": "vscode-harpoon.isQuickPick",
-                "title": "VSCode Harpoon: Quick Pick Visible"
             }
         ]
     },
