@@ -42,6 +42,8 @@ You are then able to jump to `editor 1` or `editor 2` from anywhere in your work
 - `VSCode Harpoon: Editor Global Quick Pick (vscode-harpoon.editorGlobalQuickPick)` Opens a quick
   pick menu to pick between your global editors
 - `VSCode Harpoon: Go to previous global harpoon editor (vscode-harpoon.gotoPreviousGlobalHarpoonEditor)` Jumps to the previous global editor which was last jumped from using harpoon.
+- `VSCode Harpoon: Navigate Next Editor (vscode-harpoon.navigateNextEditor)` Jumps to the next workspace editor.
+- `VSCode Harpoon: Navigate Previous Editor (vscode-harpoon.navigatePreviousEditor)` Jumps to the previous workspace editor.
 
 ### Available Contexts
 

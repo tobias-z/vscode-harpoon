@@ -8,6 +8,7 @@ import createAddEditorCommand from "./commands/add-editor";
 import createEditEditorsCommand from "./commands/edit-editors";
 import createEditorQuickPickCommand from "./commands/editor-quick-pick";
 import createGotoPreviousHarpoonEditorCommand from "./commands/goto-previous-harpoon-editor";
+import createNavigateEditorCommand from "./commands/navigate-editor";
 
 export type State = "workspaceState" | "globalState";
 
@@ -80,5 +81,13 @@ function registerCommands(
     commandFactory.registerCommand(
         `gotoPrevious${key}HarpoonEditor`,
         createGotoPreviousHarpoonEditorCommand(activeProjectService, workspaceService)
+    );
+    commandFactory.registerCommand(
+        `navigate${key}NextEditor`,
+        createNavigateEditorCommand(activeProjectService, workspaceService, "navigateNext")
+    );
+    commandFactory.registerCommand(
+        `navigate${key}PreviousEditor`,
+        createNavigateEditorCommand(activeProjectService, workspaceService, "navigatePrevious")
     );
 }

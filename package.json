@@ -27,6 +27,14 @@
     "contributes": {
         "commands": [
             {
+                "command": "vscode-harpoon.navigateNextEditor",
+                "title": "VSCode Harpoon: Navigate Next Editor"
+            },
+            {
+                "command": "vscode-harpoon.navigatePreviousEditor",
+                "title": "VSCode Harpoon: Navigate Previous Editor"
+            },
+            {
                 "command": "vscode-harpoon.addEditor",
                 "title": "VSCode Harpoon: Add Editor"
             },

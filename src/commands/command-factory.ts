@@ -1,6 +1,10 @@
 import * as vscode from "vscode";
 
 type CommandName =
+    | "navigateNextEditor"
+    | "navigateGlobalNextEditor"
+    | "navigatePreviousEditor"
+    | "navigateGlobalPreviousEditor"
     | "addEditor"
     | "editEditors"
     | "addEditor1"
