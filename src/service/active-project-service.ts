@@ -1,3 +1,5 @@
+import { NavigationDirection } from "../commands/navigate-editor";
+
 export type Editor = {
     editorId?: number;
     fileName: string;
@@ -38,6 +40,44 @@ export default class ActiveProjectService {
 
     public getEditor(id: number) {
         return this._activeEditors[id - 1];
+    }
+
+    public getNextNonFillerEditorIndex(currentEditorIndex: number, direction: NavigationDirection) {
+        if (direction === "navigateNext") {
+            const nextIndex = this.findNextNonFillerEditorIndex(currentEditorIndex + 1);
+            return nextIndex !== -1
+                ? nextIndex
+                : this.findNextNonFillerEditorIndex(0, currentEditorIndex);
+        }
+
+        const nextIndex = this.findPreviousNonFillerEditorIndex(currentEditorIndex - 1);
+        return nextIndex !== -1
+            ? nextIndex
+            : this.findPreviousNonFillerEditorIndex(this._activeEditors.length - 1, currentEditorIndex + 1);
+    }
+
+    private findNextNonFillerEditorIndex(fromIndex: number, toIndex: number = this._activeEditors.length) {
+        for (let i = fromIndex; i < toIndex; i++) {
+            if (!this.isFillerEditor(this._activeEditors[i])) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    private findPreviousNonFillerEditorIndex(fromIndex: number, toIndex: number = 0) {
+        for (let i = fromIndex; i >= toIndex; i--) {
+            if (!this.isFillerEditor(this._activeEditors[i])) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    private isFillerEditor(editor: Editor): boolean {
+        return editor.fileName === "_";
     }
 
     public set activeEditors(editors: Editor[]) {
