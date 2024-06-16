@@ -123,6 +123,14 @@
                 "title": "VSCode Harpoon: Editor Quick Pick"
             },
             {
+                "command": "vscode-harpoon.navigateGlobalNextEditor",
+                "title": "VSCode Harpoon: Navigate Next Global Editor"
+            },
+            {
+                "command": "vscode-harpoon.navigateGlobalPreviousEditor",
+                "title": "VSCode Harpoon: Navigate Previous Global Editor"
+            },
+            {
                 "command": "vscode-harpoon.addGlobalEditor",
                 "title": "VSCode Harpoon: Add Global Editor"
             },
