@@ -1,3 +1,11 @@
+## [1.6.0]
+
+- Fixed a bug where not all windows drives were accepted as editors that could be harpooned.
+- Removed `isQuickPick` from the command list, as it was never meant to be used that way.
+- Added two new commands to help with jumping editors.
+  - `navigateNextEditor` (and `navigateGlobalNextEditor`): Jumps to the next editor in the list
+  - `navigatePreviousEditor` (and `navigateGlobalPreviousEditor`): Jumps to the previous editor in the list
+
 ## [1.5.0]
 
 - Fixed bug where the _ lines in the vscode-harpoon.harpoon file would be filtered out on Windows.
